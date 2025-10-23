@@ -1,0 +1,126 @@
+{
+    "name": "solvd",
+    "address": {
+      "city": "New York",
+      "street": "Washington Street",
+      "number": 37
+    },
+    "departments":
+       [
+        {
+          "id": 1,
+          "name": "Software Development",
+          "departmentNumber": "SD1",
+          "employees":[
+              {
+                "age": 29,
+                "name": "John",
+                "surname": "Smith",
+                "email": "john.smith@example.com",
+                "birthday": "1996-03-12",
+                "employeeType": "JUNIOR",
+                "worksOnProject": "myauto",
+                "tasks":[
+                    {
+                      "name": "Develop Company Website",
+                      "startTime": "2025-10-01T09:00:00",
+                      "endTime": "2025-10-10T17:00:00"
+                    }
+                  ]
+              },
+              {
+                "age": 34,
+                "name": "Emily",
+                "surname": "Brown",
+                "email": "emily.brown@example.com",
+                "birthday": "1991-07-25",
+                "employeeType": "SENIOR",
+                "worksOnProject": "myauto",
+                "tasks": [
+                    {
+                      "name": "Develop Company Website",
+                      "startTime": "2025-10-01T09:00:00",
+                      "endTime": "2025-10-10T17:00:00"
+                    }
+                  ]
+              },
+              {
+                "age": 41,
+                "name": "Michael",
+                "surname": "Johnson",
+                "email": "michael.johnson@example.com",
+                "birthday": "1984-02-08",
+                "employeeType": "MIDDLE",
+                "worksOnProject": "myauto",
+                "tasks":
+                   [
+                    {
+                      "name": "Develop Company Website",
+                      "startTime": "2025-10-01T09:00:00",
+                      "endTime": "2025-10-10T17:00:00"
+                    }
+                  ]
+              },
+              {
+                "age": 26,
+                "name": "Sophia",
+                "surname": "Garcia",
+                "email": "sophia.garcia@example.com",
+                "birthday": "1999-11-30",
+                "employeeType": "CEO",
+                "worksOnProject": "myauto",
+                "tasks": [
+                    {
+                      "name": "Develop Company Website",
+                      "startTime": "2025-10-01T09:00:00",
+                      "endTime": "2025-10-10T17:00:00"
+                    }
+                  ]
+              },
+              {
+                "age": 38,
+                "name": "David",
+                "surname": "Lee",
+                "email": "david.lee@example.com",
+                "birthday": "1987-05-14",
+                "employeeType": "MANAGER",
+                "worksOnProject": "myauto",
+                "tasks":
+                   [
+                    {
+                      "name": "Develop Company Website",
+                      "startTime": "2025-10-01T09:00:00",
+                      "endTime": "2025-10-10T17:00:00"
+                    }
+                  ]
+              }
+            ],
+          "projects": [
+              {
+                "id": 1,
+                "name": "Myauto",
+                "tasks":
+                   [
+                    {
+                      "name": "Develop Company Website",
+                      "startTime": "2025-10-01T09:00:00",
+                      "endTime": "2025-10-10T17:00:00"
+                    },
+                    {
+                      "name": "Prepare Client Presentation",
+                      "startTime": "2025-10-12T10:00:00",
+                      "endTime": "2025-10-13T15:00:00"
+                    },
+                    {
+                      "name": "Database Optimization",
+                      "startTime": "2025-10-15T08:30:00",
+                      "endTime": "2025-10-18T16:30:00"
+                    }
+                  ],
+
+                "finished": false
+              }
+            ]
+          }
+      ]
+}

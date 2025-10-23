@@ -1,0 +1,126 @@
+<Company>
+    <name>solvd</name>
+    <Address>
+        <city>New York</city>
+        <street>Washington Street</street>
+        <number>37</number>
+    </Address>
+    <Departments>
+        <Department id="1">
+            <name>Software Development</name>
+            <number>SD1</number>
+            <Employees>
+                <Employee>
+                    <age>29</age>
+                    <name>John</name>
+                    <surname>Smith</surname>
+                    <email>john.smith@example.com</email>
+                    <dateOfBirth>1996-03-12</dateOfBirth>
+                    <EmployeeType> junior</EmployeeType>
+                    <WorksOnProject> myauto</WorksOnProject>
+                    <tasks>
+                        <task>
+                            <name>Develop Company Website</name>
+                            <startTime>2025-10-01T09:00:00</startTime>
+                            <endTime>2025-10-10T17:00:00</endTime>
+                        </task>
+                    </tasks>
+                </Employee>
+
+                <Employee>
+                    <age>34</age>
+                    <name>Emily</name>
+                    <surname>Brown</surname>
+                    <email>emily.brown@example.com</email>
+                    <dateOfBirth>1991-07-25</dateOfBirth>
+                    <EmployeeType> Senior </EmployeeType>
+                    <WorksOnProject> myauto</WorksOnProject>
+                    <tasks>
+                        <task>
+                            <name>Develop Company Website</name>
+                            <startTime>2025-10-01T09:00:00</startTime>
+                            <endTime>2025-10-10T17:00:00</endTime>
+                        </task>
+                    </tasks>
+                </Employee>
+
+                <Employee>
+                    <age>41</age>
+                    <name>Michael</name>
+                    <surname>Johnson</surname>
+                    <email>michael.johnson@example.com</email>
+                    <dateOfBirth>1984-02-08</dateOfBirth>
+                    <WorksOnProject> myauto</WorksOnProject>
+                    <EmployeeType> Middle </EmployeeType>
+                    <tasks>
+                        <task>
+                            <name>Develop Company Website</name>
+                            <startTime>2025-10-01T09:00:00</startTime>
+                            <endTime>2025-10-10T17:00:00</endTime>
+                        </task>
+                    </tasks>
+                </Employee>
+
+                <Employee>
+                    <age>26</age>
+                    <name>Sophia</name>
+                    <surname>Garcia</surname>
+                    <email>sophia.garcia@example.com</email>
+                    <dateOfBirth>1999-11-30</dateOfBirth>
+                    <EmployeeType> CEO</EmployeeType>
+                    <WorksOnProject> myauto</WorksOnProject>
+                    <tasks>
+                        <task>
+                            <name>Develop Company Website</name>
+                            <startTime>2025-10-01T09:00:00</startTime>
+                            <endTime>2025-10-10T17:00:00</endTime>
+                        </task>
+                    </tasks>
+                </Employee>
+
+                <Employee>
+                    <age>38</age>
+                    <name>David</name>
+                    <surname>Lee</surname>
+                    <email>david.lee@example.com</email>
+                    <eateOfBirth>1987-05-14</eateOfBirth>
+                    <EmployeeType> Manager </EmployeeType>
+                    <WorksOnProject> myauto</WorksOnProject>
+                    <tasks>
+                        <task>
+                            <name>Develop Company Website</name>
+                            <startTime>2025-10-01T09:00:00</startTime>
+                            <endTime>2025-10-10T17:00:00</endTime>
+                        </task>
+                    </tasks>
+                </Employee>
+            </Employees>
+
+            <Projects>
+                <project id="1">
+                    <name>Myauto</name>
+                    <tasks>
+                        <task>
+                            <name>Develop Company Website</name>
+                            <startTime>2025-10-01T09:00:00</startTime>
+                            <endTime>2025-10-10T17:00:00</endTime>
+                        </task>
+
+                        <task>
+                            <name>Prepare Client Presentation</name>
+                            <startTime>2025-10-12T10:00:00</startTime>
+                            <endTime>2025-10-13T15:00:00</endTime>
+                        </task>
+
+                        <task>
+                            <name>Database Optimization</name>
+                            <startTime>2025-10-15T08:30:00</startTime>
+                            <endTime>2025-10-18T16:30:00</endTime>
+                        </task>
+                    </tasks>
+                    <finished>false</finished>
+                </project>
+            </Projects>
+        </Department>
+    </Departments>
+</Company>
