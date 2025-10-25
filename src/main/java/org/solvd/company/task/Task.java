@@ -23,7 +23,6 @@ public class Task {
     @XmlElement(name = "endTime")
     private LocalDate endTime;
 
-
     public Task(String name, LocalDate startTime, LocalDate endTime) {
         this.name = name;
         this.startTime = startTime;

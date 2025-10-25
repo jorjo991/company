@@ -53,5 +53,4 @@ public class Salary {
         this.cutPercentage = cutPercentage;
     }
 
-
 }
