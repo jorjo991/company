@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="853d611d-429a-4103-b118-390ae063a054" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/adapter/LocalDateAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/budget/Budget.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/budget/Salary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/DOMParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/JAXBParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/JSONParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/ValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/department/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/department/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/employees/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/employees/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/person/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/project/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/project/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/task/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/task/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Company.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Company.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Company.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Company.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Company.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Company.xsd" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jorjo991&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jorjo991/company.git&quot;,
+    &quot;accountId&quot;: &quot;04a6ee84-eac3-42be-8a35-58e5b2185ce8&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="344lYATVXgYZGtkLibEa4QQWqAC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DOMParser.executor": "Run",
+    "Application.JAXBParser.executor": "Run",
+    "Application.JSONParser.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.Validator.executor": "Run",
+    "Application.ValidatorTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Admin/Desktop/Company/company",
+    "onboarding.tips.debug.path": "C:/Users/Admin/Desktop/Company/company/src/main/java/org/solvd/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.ValidatorTest">
+    <configuration name="DOMParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.solvd.company.main.DOMParser" />
+      <module name="company" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.solvd.company.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JAXBParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.solvd.company.main.JAXBParser" />
+      <module name="company" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.solvd.company.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JSONParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.solvd.company.main.JSONParser" />
+      <module name="company" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.solvd.company.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.solvd.company.main.Test" />
+      <module name="company" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.solvd.company.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ValidatorTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.solvd.company.main.ValidatorTest" />
+      <module name="company" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.solvd.company.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ValidatorTest" />
+        <item itemvalue="Application.JSONParser" />
+        <item itemvalue="Application.JAXBParser" />
+        <item itemvalue="Application.DOMParser" />
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="853d611d-429a-4103-b118-390ae063a054" name="Changes" comment="" />
+      <created>1760480772293</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760480772293</updated>
+    </task>
+    <servers />
+  </component>
+</project>
