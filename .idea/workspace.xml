@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="853d611d-429a-4103-b118-390ae063a054" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/adapter/LocalDateAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/budget/Budget.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/budget/Salary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/DOMParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/JAXBParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/JSONParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/ValidatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/company/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/department/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/department/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/employees/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/employees/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/person/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/project/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/project/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/solvd/company/task/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/solvd/company/task/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Company.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Company.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Company.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Company.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Company.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Company.xsd" afterDir="false" />
-    </list>
+    <list default="true" id="853d611d-429a-4103-b118-390ae063a054" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
