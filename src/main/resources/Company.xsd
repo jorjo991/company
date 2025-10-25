@@ -1,9 +1,10 @@
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="Company">
         <xs:complexType>
             <xs:sequence>
                 <xs:element type="xs:string" name="name"/>
-                <xs:element name="Address">
+                <xs:element name="address">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:string" name="city"/>
@@ -12,50 +13,100 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Departments">
+                <xs:element name="budget">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="Department">
+                            <xs:element type="xs:byte" name="budgetID"/>
+                            <xs:element type="xs:int" name="totalAmount"/>
+                            <xs:element type="xs:int" name="spent"/>
+                            <xs:element type="xs:string" name="belongs"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="clients">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="client" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:byte" name="age"/>
+                                        <xs:element type="xs:string" name="name"/>
+                                        <xs:element type="xs:string" name="surname"/>
+                                        <xs:element type="xs:string" name="email"/>
+                                        <xs:element type="xs:date" name="birthday"/>
+                                        <xs:element type="xs:string" name="active"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="departments">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="department">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element type="xs:string" name="name"/>
-                                        <xs:element type="xs:string" name="number"/>
-                                        <xs:element name="Employees">
+                                        <xs:element name="budget">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="Employee" maxOccurs="unbounded" minOccurs="0">
+                                                    <xs:element type="xs:byte" name="budgetID"/>
+                                                    <xs:element type="xs:short" name="totalAmount"/>
+                                                    <xs:element type="xs:short" name="spent"/>
+                                                    <xs:element type="xs:string" name="belongs"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element type="xs:string" name="departmentNumber"/>
+                                        <xs:element name="employees">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="employee" maxOccurs="unbounded" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:choice maxOccurs="unbounded" minOccurs="0">
                                                                 <xs:element type="xs:byte" name="age"/>
                                                                 <xs:element type="xs:string" name="name"/>
                                                                 <xs:element type="xs:string" name="surname"/>
                                                                 <xs:element type="xs:string" name="email"/>
-                                                                <xs:element type="xs:date" name="dateOfBirth"/>
-                                                                <xs:element type="xs:string" name="EmployeeType"/>
-                                                                <xs:element type="xs:string" name="WorksOnProject"/>
+                                                                <xs:element type="xs:date" name="birthday"/>
+                                                                <xs:element type="xs:string" name="employeeType"/>
+                                                                <xs:element type="xs:string" name="worksOnProject"/>
+                                                                <xs:element name="salary">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element type="xs:float" name="amount"/>
+                                                                            <xs:element type="xs:float" name="bonus"/>
+                                                                            <xs:element type="xs:byte"
+                                                                                        name="cutPercentage"/>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
                                                                 <xs:element name="tasks">
                                                                     <xs:complexType>
                                                                         <xs:sequence>
                                                                             <xs:element name="task">
                                                                                 <xs:complexType>
                                                                                     <xs:sequence>
-                                                                                        <xs:element type="xs:string" name="name"/>
-                                                                                        <xs:element type="xs:dateTime" name="startTime"/>
-                                                                                        <xs:element type="xs:dateTime" name="endTime"/>
+                                                                                        <xs:element type="xs:string"
+                                                                                                    name="name"/>
+                                                                                        <xs:element type="xs:date"
+                                                                                                    name="startTime"/>
+                                                                                        <xs:element type="xs:date"
+                                                                                                    name="endTime"/>
                                                                                     </xs:sequence>
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
                                                                     </xs:complexType>
                                                                 </xs:element>
-                                                                <xs:element type="xs:date" name="eateOfBirth"/>
                                                             </xs:choice>
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="Projects">
+                                        <xs:element name="projects">
                                             <xs:complexType>
                                                 <xs:sequence>
                                                     <xs:element name="project">
@@ -65,12 +116,17 @@
                                                                 <xs:element name="tasks">
                                                                     <xs:complexType>
                                                                         <xs:sequence>
-                                                                            <xs:element name="task" maxOccurs="unbounded" minOccurs="0">
+                                                                            <xs:element name="task"
+                                                                                        maxOccurs="unbounded"
+                                                                                        minOccurs="0">
                                                                                 <xs:complexType>
                                                                                     <xs:sequence>
-                                                                                        <xs:element type="xs:string" name="name"/>
-                                                                                        <xs:element type="xs:dateTime" name="startTime"/>
-                                                                                        <xs:element type="xs:dateTime" name="endTime"/>
+                                                                                        <xs:element type="xs:string"
+                                                                                                    name="name"/>
+                                                                                        <xs:element type="xs:date"
+                                                                                                    name="startTime"/>
+                                                                                        <xs:element type="xs:date"
+                                                                                                    name="endTime"/>
                                                                                     </xs:sequence>
                                                                                 </xs:complexType>
                                                                             </xs:element>

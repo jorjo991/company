@@ -1,126 +1,206 @@
 <Company>
     <name>solvd</name>
-    <Address>
+    <address>
         <city>New York</city>
         <street>Washington Street</street>
         <number>37</number>
-    </Address>
-    <Departments>
-        <Department id="1">
+    </address>
+    <budget>
+        <budgetID>1</budgetID>
+        <totalAmount>1000000</totalAmount>
+        <spent>50000</spent>
+        <belongs>CompanyBudget</belongs>
+    </budget>
+
+    <clients>
+        <client>
+            <age>28</age>
+            <name>John</name>
+            <surname>Smith</surname>
+            <email>john.smith@example.com</email>
+            <birthday>1997-05-10</birthday>
+            <active>true</active>
+        </client>
+        <client>
+            <age>34</age>
+            <name>Emily</name>
+            <surname>Johnson</surname>
+            <email>emily.johnson@example.com</email>
+            <birthday>1991-08-23</birthday>
+            <active>false</active>
+        </client>
+        <client>
+            <age>41</age>
+            <name>Michael</name>
+            <surname>Brown</surname>
+            <email>michael.brown@example.com</email>
+            <birthday>1984-11-12</birthday>
+            <active>true</active>
+        </client>
+        <client>
+            <age>26</age>
+            <name>Sophia</name>
+            <surname>Davis</surname>
+            <email>sophia.davis@example.com</email>
+            <birthday>1999-01-18</birthday>
+            <active>true</active>
+        </client>
+        <client>
+            <age>38</age>
+            <name>David</name>
+            <surname>Wilson</surname>
+            <email>david.wilson@example.com</email>
+            <birthday>1987-09-04</birthday>
+            <active>false</active>
+        </client>
+    </clients>
+    <departments>
+        <department id="1">
             <name>Software Development</name>
-            <number>SD1</number>
-            <Employees>
-                <Employee>
+            <budget>
+                <budgetID>2</budgetID>
+                <totalAmount>10000</totalAmount>
+                <spent>2000</spent>
+                <belongs>software Department</belongs>
+            </budget>
+            <departmentNumber>SD1</departmentNumber>
+            <employees>
+                <employee>
                     <age>29</age>
                     <name>John</name>
                     <surname>Smith</surname>
                     <email>john.smith@example.com</email>
-                    <dateOfBirth>1996-03-12</dateOfBirth>
-                    <EmployeeType> junior</EmployeeType>
-                    <WorksOnProject> myauto</WorksOnProject>
+                    <birthday>1996-03-12</birthday>
+                    <employeeType>JUNIOR</employeeType>
+                    <worksOnProject>myauto</worksOnProject>
+                    <salary>
+                        <amount>3200.50</amount>
+                        <bonus>500.00</bonus>
+                        <cutPercentage>10</cutPercentage>
+                    </salary>
                     <tasks>
                         <task>
                             <name>Develop Company Website</name>
-                            <startTime>2025-10-01T09:00:00</startTime>
-                            <endTime>2025-10-10T17:00:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
                     </tasks>
-                </Employee>
+                </employee>
 
-                <Employee>
+                <employee>
                     <age>34</age>
                     <name>Emily</name>
                     <surname>Brown</surname>
                     <email>emily.brown@example.com</email>
-                    <dateOfBirth>1991-07-25</dateOfBirth>
-                    <EmployeeType> Senior </EmployeeType>
-                    <WorksOnProject> myauto</WorksOnProject>
+                    <birthday>1991-07-25</birthday>
+                    <employeeType>SENIOR</employeeType>
+                    <worksOnProject>myauto</worksOnProject>
+                    <salary>
+                        <amount>3200.50</amount>
+                        <bonus>500.00</bonus>
+                        <cutPercentage>10</cutPercentage>
+                    </salary>
                     <tasks>
                         <task>
                             <name>Develop Company Website</name>
-                            <startTime>2025-10-01T09:00:00</startTime>
-                            <endTime>2025-10-10T17:00:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
                     </tasks>
-                </Employee>
+                </employee>
 
-                <Employee>
+                <employee>
                     <age>41</age>
                     <name>Michael</name>
                     <surname>Johnson</surname>
                     <email>michael.johnson@example.com</email>
-                    <dateOfBirth>1984-02-08</dateOfBirth>
-                    <WorksOnProject> myauto</WorksOnProject>
-                    <EmployeeType> Middle </EmployeeType>
+                    <birthday>1984-02-08</birthday>
+                    <worksOnProject>myauto</worksOnProject>
+                    <salary>
+                        <amount>3200.50</amount>
+                        <bonus>500.00</bonus>
+                        <cutPercentage>10</cutPercentage>
+                    </salary>
+                    <employeeType>MIDDLE</employeeType>
                     <tasks>
                         <task>
                             <name>Develop Company Website</name>
-                            <startTime>2025-10-01T09:00:00</startTime>
-                            <endTime>2025-10-10T17:00:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
                     </tasks>
-                </Employee>
+                </employee>
 
-                <Employee>
+                <employee>
                     <age>26</age>
                     <name>Sophia</name>
                     <surname>Garcia</surname>
                     <email>sophia.garcia@example.com</email>
-                    <dateOfBirth>1999-11-30</dateOfBirth>
-                    <EmployeeType> CEO</EmployeeType>
-                    <WorksOnProject> myauto</WorksOnProject>
+                    <birthday>1999-11-30</birthday>
+                    <employeeType>CEO</employeeType>
+                    <worksOnProject>myauto</worksOnProject>
+                    <salary>
+                        <amount>3200.50</amount>
+                        <bonus>500.00</bonus>
+                        <cutPercentage>10</cutPercentage>
+                    </salary>
                     <tasks>
                         <task>
                             <name>Develop Company Website</name>
-                            <startTime>2025-10-01T09:00:00</startTime>
-                            <endTime>2025-10-10T17:00:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
                     </tasks>
-                </Employee>
+                </employee>
 
-                <Employee>
+                <employee>
                     <age>38</age>
                     <name>David</name>
                     <surname>Lee</surname>
                     <email>david.lee@example.com</email>
-                    <eateOfBirth>1987-05-14</eateOfBirth>
-                    <EmployeeType> Manager </EmployeeType>
-                    <WorksOnProject> myauto</WorksOnProject>
+                    <birthday>1987-05-14</birthday>
+                    <employeeType>MANAGER</employeeType>
+                    <worksOnProject>myauto</worksOnProject>
+                    <salary>
+                        <amount>3200.50</amount>
+                        <bonus>500.00</bonus>
+                        <cutPercentage>10</cutPercentage>
+                    </salary>
                     <tasks>
                         <task>
                             <name>Develop Company Website</name>
-                            <startTime>2025-10-01T09:00:00</startTime>
-                            <endTime>2025-10-10T17:00:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
                     </tasks>
-                </Employee>
-            </Employees>
+                </employee>
+            </employees>
 
-            <Projects>
+            <projects>
                 <project id="1">
                     <name>Myauto</name>
                     <tasks>
                         <task>
                             <name>Develop Company Website</name>
-                            <startTime>2025-10-01T09:00:00</startTime>
-                            <endTime>2025-10-10T17:00:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
 
                         <task>
                             <name>Prepare Client Presentation</name>
-                            <startTime>2025-10-12T10:00:00</startTime>
-                            <endTime>2025-10-13T15:00:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
 
                         <task>
                             <name>Database Optimization</name>
-                            <startTime>2025-10-15T08:30:00</startTime>
-                            <endTime>2025-10-18T16:30:00</endTime>
+                            <startTime>2025-10-01</startTime>
+                            <endTime>2025-10-10</endTime>
                         </task>
                     </tasks>
                     <finished>false</finished>
                 </project>
-            </Projects>
-        </Department>
-    </Departments>
+            </projects>
+        </department>
+    </departments>
 </Company>

@@ -4,23 +4,30 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
+import org.solvd.company.budget.Salary;
 import org.solvd.company.person.Person;
 import org.solvd.company.task.Task;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Employee extends Person {
-    @XmlElement(name = "EmployeeType")
+
+    @XmlElement(name = "employeeType")
     private EmployeeType employeeType;
-    @XmlElement(name = "WorksOnProject")
+
+    @XmlElement(name = "worksOnProject")
     private String worksOnProject;
+
+    @XmlElement(name = "salary")
+    private Salary salary;
+
     @XmlElementWrapper(name = "tasks")
     @XmlElement(name = "task")
     private List<Task> tasks;
 
-    public Employee(int age, String name, String surname, String email, Date birthDay) {
+    public Employee(int age, String name, String surname, String email, LocalDate birthDay) {
         super(age, name, surname, email, birthDay);
     }
 
@@ -28,15 +35,16 @@ public class Employee extends Person {
         super();
     }
 
+
     @Override
     public String toString() {
-        return "Employee{" + super.toString() +
+        return "Employee{" +
                 "employeeType=" + employeeType +
                 ", worksOnProject='" + worksOnProject + '\'' +
-                ", worksOnTask=" + tasks +
+                ", salary=" + salary +
+                ", tasks=" + tasks +
                 '}';
     }
-
 
     public EmployeeType getEmployeeType() {
         return employeeType;
@@ -59,6 +67,18 @@ public class Employee extends Person {
     }
 
     public void setTask(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Salary getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Salary salary) {
+        this.salary = salary;
+    }
+
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 }

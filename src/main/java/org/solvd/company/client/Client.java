@@ -1,0 +1,32 @@
+package org.solvd.company.client;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import org.solvd.company.person.Person;
+
+import java.time.LocalDate;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Client extends Person {
+
+    @XmlElement(name = "active")
+    private Boolean active;
+
+    public Client(int age, String name, String surname, String email, LocalDate birthday, Boolean active) {
+        super(age, name, surname, email, birthday);
+        this.active = active;
+    }
+
+    public Client() {
+
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+}

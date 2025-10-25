@@ -7,10 +7,13 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Project {
+
     @XmlAttribute(name = "id")
     private int id;
+
     @XmlElement(name = "name")
     private String name;
+
     @XmlElementWrapper(name = "tasks")
     @XmlElement(name = "task")
     private List<Task> tasks;

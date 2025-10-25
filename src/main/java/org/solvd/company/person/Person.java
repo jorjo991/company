@@ -1,9 +1,15 @@
 package org.solvd.company.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.solvd.company.adapter.LocalDateAdapter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Person {
 
     private int age;
@@ -11,9 +17,11 @@ public abstract class Person {
     private String surname;
     private String email;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date birthday;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    @XmlElement(name = "birthday")
+    private LocalDate birthday;
 
-    public Person(int age, String name, String surname, String email, Date birthday) {
+    public Person(int age, String name, String surname, String email, LocalDate birthday) {
         this.age = age;
         this.name = name;
         this.surname = surname;
@@ -32,7 +40,7 @@ public abstract class Person {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
-                ", birthDay=" + birthday +
+                ", birthday=" + birthday +
                 '}';
     }
 
@@ -69,11 +77,11 @@ public abstract class Person {
         this.email = email;
     }
 
-    public Date getBirthDay() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthDay(Date birthDay) {
-        this.birthday = birthDay;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 }

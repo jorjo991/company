@@ -1,6 +1,7 @@
 package org.solvd.company.department;
 
 import jakarta.xml.bind.annotation.*;
+import org.solvd.company.budget.Budget;
 import org.solvd.company.employees.Employee;
 import org.solvd.company.project.Project;
 
@@ -8,16 +9,24 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Department {
+
     @XmlAttribute(name = "id")
     private int id;
+
     private String name;
+
+    @XmlElement(name = "budget")
+    private Budget budget;
+
     @XmlElement(name = "number")
     private String departmentNumber;
-    @XmlElementWrapper(name = "Employees")
-    @XmlElement(name = "Employee")
+
+    @XmlElementWrapper(name = "employees")
+    @XmlElement(name = "employee")
     private List<Employee> employees;
+
     @XmlElementWrapper(name = "projects")
-    @XmlElement(name = "Project")
+    @XmlElement(name = "project")
     private List<Project> projects;
 
     public Department(int id, String name, String departmentNumber, List<Employee> employees) {
@@ -25,11 +34,6 @@ public class Department {
         this.name = name;
         this.departmentNumber = departmentNumber;
         this.employees = employees;
-    }
-
-    public Department(int id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Department() {
@@ -41,8 +45,10 @@ public class Department {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", budget=" + budget +
                 ", departmentNumber='" + departmentNumber + '\'' +
                 ", employees=" + employees +
+                ", projects=" + projects +
                 '}';
     }
 
@@ -84,5 +90,13 @@ public class Department {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 }

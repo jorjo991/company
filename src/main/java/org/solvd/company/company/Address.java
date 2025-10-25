@@ -2,7 +2,7 @@ package org.solvd.company.company;
 
 import jakarta.xml.bind.annotation.*;
 
-@XmlRootElement(name = "Address")
+@XmlRootElement(name = "address")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Address {
 
@@ -22,6 +22,15 @@ public class Address {
         this.city = city;
         this.street = street;
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", number=" + number +
+                '}';
     }
 
     public String getCity() {

@@ -50,8 +50,9 @@ public class Main {
 
     public static void main(String[] args) throws SAXException {
 
-        File schemaFile = new File("C:\\Users\\Admin\\Desktop\\Company\\company\\src\\main\\resources\\company.xsd");
-        File xmlFile = new File("C:\\Users\\Admin\\Desktop\\Company\\company\\src\\main\\resources\\company.xml");
+        File schemaFile = new File("src\\main\\resources\\company.xsd");
+        File xmlFile = new File("src\\main\\resources\\company.xml");
+
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
         Schema schema = factory.newSchema(schemaFile);
@@ -109,17 +110,19 @@ public class Main {
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("JSON");
         //Parse Json with jackson
-        File jsonFile = new File("C:\\Users\\Admin\\Desktop\\Company\\company\\src\\main\\resources\\Company.json");
+        File jsonFile = new File("src\\main\\resources\\Company.json");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             Company company = objectMapper.readValue(jsonFile, Company.class);
             System.out.println(company);
+
             JsonNode jsonNode = objectMapper.readTree(jsonFile);
+
             String companyName = jsonNode.at("/name").asText();
             String companyInCity = jsonNode.at("/address/city").asText();
-            String companyManager = jsonNode.at("/departments/employees/4/name").asText();
-            String juniorDeveloperTaskName = jsonNode.at("/departments/employees/0/task/0/name").asText();
-            String juniorDeveloperWorksOnProject = jsonNode.at("/departments/employees/0/worksOnProject").asText();
+            String companyManager = jsonNode.at("/departments/0/employees/4/name").asText();
+            String juniorDeveloperTaskName = jsonNode.at("/departments/0/employees/0/tasks/0/name").asText();
+            String juniorDeveloperWorksOnProject = jsonNode.at("/departments/0/employees/0/worksOnProject").asText();
 
             System.out.println("Company Name " + companyName);
             System.out.println("Company Office is in " + companyInCity);
