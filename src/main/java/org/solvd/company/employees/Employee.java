@@ -5,6 +5,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import org.solvd.company.budget.Salary;
+import org.solvd.company.equipment.Laptop;
 import org.solvd.company.person.Person;
 import org.solvd.company.task.Task;
 
@@ -26,6 +27,8 @@ public class Employee extends Person {
     @XmlElementWrapper(name = "tasks")
     @XmlElement(name = "task")
     private List<Task> tasks;
+
+    private Laptop laptop;
 
     public Employee(int age, String name, String surname, String email, LocalDate birthDay) {
         super(age, name, surname, email, birthDay);
@@ -79,5 +82,13 @@ public class Employee extends Person {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
     }
 }

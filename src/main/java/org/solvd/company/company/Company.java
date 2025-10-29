@@ -5,6 +5,7 @@ import jakarta.xml.bind.annotation.*;
 import org.solvd.company.budget.Budget;
 import org.solvd.company.client.Client;
 import org.solvd.company.department.Department;
+import org.solvd.company.office.Office;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,6 @@ public class Company {
     @XmlElement(name = "name")
     private String name;
 
-    @XmlElement(name = "address")
-    private Address address;
-
     @XmlElement(name = "budget")
     private Budget budget;
 
@@ -31,10 +29,11 @@ public class Company {
     @XmlElement(name = "department")
     private List<Department> departments;
 
+    private List<Office> offices;
+
     public Company(String name, Address address, Budget budget) {
 
         this.name = name;
-        this.address = address;
         this.departments = new ArrayList<>();
         this.clients = new ArrayList<>();
         this.budget = budget;
@@ -48,10 +47,10 @@ public class Company {
     public String toString() {
         return "Company{" +
                 "name='" + name + '\'' +
-                ", address=" + address +
                 ", budget=" + budget +
                 ", clients=" + clients +
                 ", departments=" + departments +
+                ", offices=" + offices +
                 '}';
     }
 
@@ -61,14 +60,6 @@ public class Company {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public List<Department> getDepartments() {
@@ -93,5 +84,13 @@ public class Company {
 
     public void setClients(List<Client> clients) {
         this.clients = clients;
+    }
+
+    public List<Office> getOffices() {
+        return offices;
+    }
+
+    public void setOffices(List<Office> offices) {
+        this.offices = offices;
     }
 }
