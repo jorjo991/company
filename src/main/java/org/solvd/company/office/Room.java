@@ -4,7 +4,7 @@ public class Room {
 
     private Long id;
     private Integer capacity;
-    private boolean available;
+    private Boolean available;
     private String roomNumber;
 
     public Room(Long id, int capacity, boolean available, String roomNumber) {

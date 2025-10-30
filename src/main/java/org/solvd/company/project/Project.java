@@ -1,6 +1,7 @@
 package org.solvd.company.project;
 
 import jakarta.xml.bind.annotation.*;
+import org.solvd.company.employees.Employee;
 import org.solvd.company.task.Task;
 
 import java.util.List;
@@ -70,4 +71,5 @@ public class Project {
     public void setFinished(boolean finished) {
         this.finished = finished;
     }
+
 }

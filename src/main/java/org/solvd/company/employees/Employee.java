@@ -7,6 +7,7 @@ import jakarta.xml.bind.annotation.XmlElementWrapper;
 import org.solvd.company.budget.Salary;
 import org.solvd.company.equipment.Laptop;
 import org.solvd.company.person.Person;
+import org.solvd.company.project.Project;
 import org.solvd.company.task.Task;
 
 import java.time.LocalDate;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Employee extends Person {
+
+    private Long id;
 
     @XmlElement(name = "employeeType")
     private EmployeeType employeeType;
@@ -27,6 +30,7 @@ public class Employee extends Person {
     @XmlElementWrapper(name = "tasks")
     @XmlElement(name = "task")
     private List<Task> tasks;
+    private List<Project> woksOnProject;
 
     private Laptop laptop;
 
@@ -90,5 +94,21 @@ public class Employee extends Person {
 
     public void setLaptop(Laptop laptop) {
         this.laptop = laptop;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Project> getWoksOnProject() {
+        return woksOnProject;
+    }
+
+    public void setWoksOnProject(List<Project> woksOnProject) {
+        this.woksOnProject = woksOnProject;
     }
 }

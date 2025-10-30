@@ -103,4 +103,5 @@ public class Company {
     public void setOffices(List<Office> offices) {
         this.offices = offices;
     }
+
 }

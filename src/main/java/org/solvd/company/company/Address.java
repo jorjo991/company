@@ -6,6 +6,7 @@ import jakarta.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Address {
 
+    private Long id;
     @XmlElement(name = "city")
     private String city;
 
@@ -55,5 +56,13 @@ public class Address {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

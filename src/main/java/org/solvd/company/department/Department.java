@@ -3,6 +3,7 @@ package org.solvd.company.department;
 import jakarta.xml.bind.annotation.*;
 import org.solvd.company.budget.Budget;
 import org.solvd.company.employees.Employee;
+import org.solvd.company.office.Room;
 import org.solvd.company.project.Project;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class Department {
     @XmlElementWrapper(name = "projects")
     @XmlElement(name = "project")
     private List<Project> projects;
+    private List<Room> availableRooms;
 
     public Department(Long id, String name, String departmentNumber, List<Employee> employees) {
         this.id = id;
@@ -98,5 +100,13 @@ public class Department {
 
     public void setBudget(Budget budget) {
         this.budget = budget;
+    }
+
+    public List<Room> getAvailableRooms() {
+        return availableRooms;
+    }
+
+    public void setAvailableRooms(List<Room> availableRooms) {
+        this.availableRooms = availableRooms;
     }
 }
