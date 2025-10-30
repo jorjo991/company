@@ -5,7 +5,7 @@
 -- Dumped from database version 17.4
 -- Dumped by pg_dump version 17.4
 
--- Started on 2025-10-29 14:00:35
+-- Started on 2025-10-30 12:20:26
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,25 +19,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 4 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
---
-
-CREATE SCHEMA public;
-
-
-ALTER SCHEMA public OWNER TO pg_database_owner;
-
---
--- TOC entry 4954 (class 0 OID 0)
--- Dependencies: 4
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
-
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -48,11 +29,11 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.budgets (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     total_amount numeric(15,2) NOT NULL,
     spend_amount numeric(15,2) NOT NULL,
     description character varying(50) NOT NULL,
-    company_id integer
+    company_id bigint
 );
 
 
@@ -71,17 +52,15 @@ CREATE SEQUENCE public.budgets_budget_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER SEQUENCE public.budgets_budget_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4955 (class 0 OID 0)
+-- TOC entry 4954 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: budgets_budget_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.budgets_budget_id_seq OWNED BY public.budgets.id;
-
 
 --
 -- TOC entry 220 (class 1259 OID 41227)
@@ -89,15 +68,14 @@ ALTER SEQUENCE public.budgets_budget_id_seq OWNED BY public.budgets.id;
 --
 
 CREATE TABLE public.clients (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     client_name character varying(30) NOT NULL,
     clinet_surname character varying(30) NOT NULL,
     clinet_email text NOT NULL,
     client_birthday date NOT NULL,
     client_active boolean NOT NULL,
-    company_id integer
+    company_id bigint
 );
-
 
 ALTER TABLE public.clients OWNER TO postgres;
 
@@ -107,11 +85,10 @@ ALTER TABLE public.clients OWNER TO postgres;
 --
 
 CREATE TABLE public.companies (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying(30) NOT NULL,
     CONSTRAINT companies_name_check CHECK ((length((name)::text) > 0))
 );
-
 
 ALTER TABLE public.companies OWNER TO postgres;
 
@@ -121,12 +98,11 @@ ALTER TABLE public.companies OWNER TO postgres;
 --
 
 CREATE TABLE public.departments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     deparmtent_name character varying(30) NOT NULL,
     department_number integer NOT NULL,
-    company_id integer NOT NULL
+    company_id bigint NOT NULL
 );
-
 
 ALTER TABLE public.departments OWNER TO postgres;
 
@@ -136,15 +112,14 @@ ALTER TABLE public.departments OWNER TO postgres;
 --
 
 CREATE TABLE public.employees (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     age integer NOT NULL,
     name character varying(50) NOT NULL,
     surname character varying(50) NOT NULL,
     email character varying(100) NOT NULL,
     birth_day date NOT NULL,
-    department_id integer NOT NULL
+    department_id bigint NOT NULL
 );
-
 
 ALTER TABLE public.employees OWNER TO postgres;
 
@@ -154,13 +129,12 @@ ALTER TABLE public.employees OWNER TO postgres;
 --
 
 CREATE TABLE public.laptops (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying(50) NOT NULL,
     brand character varying(50) NOT NULL,
     color character varying(50) NOT NULL,
-    employee_id integer
+    employee_id bigint
 );
-
 
 ALTER TABLE public.laptops OWNER TO postgres;
 
@@ -174,10 +148,9 @@ CREATE TABLE public.offices (
     name character varying(100) NOT NULL,
     capacity integer,
     address_id text NOT NULL,
-    company_id integer,
+    company_id bigint,
     CONSTRAINT offices_capacity_check CHECK ((capacity >= 0))
 );
-
 
 ALTER TABLE public.offices OWNER TO postgres;
 
@@ -187,12 +160,11 @@ ALTER TABLE public.offices OWNER TO postgres;
 --
 
 CREATE TABLE public.projects (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying(100) NOT NULL,
     finished boolean NOT NULL,
-    department_id integer NOT NULL
+    department_id bigint NOT NULL
 );
-
 
 ALTER TABLE public.projects OWNER TO postgres;
 
@@ -210,7 +182,6 @@ CREATE TABLE public.rooms (
     CONSTRAINT rooms_capacity_check CHECK ((capacity >= 0))
 );
 
-
 ALTER TABLE public.rooms OWNER TO postgres;
 
 --
@@ -225,17 +196,15 @@ CREATE SEQUENCE public.rooms_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER SEQUENCE public.rooms_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4956 (class 0 OID 0)
+-- TOC entry 4955 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: rooms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.rooms_id_seq OWNED BY public.rooms.id;
-
 
 --
 -- TOC entry 223 (class 1259 OID 41268)
@@ -243,13 +212,12 @@ ALTER SEQUENCE public.rooms_id_seq OWNED BY public.rooms.id;
 --
 
 CREATE TABLE public.salary (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     amount numeric(15,2) NOT NULL,
     bonus numeric(15,2) NOT NULL,
     cut_percentage integer NOT NULL,
-    employee_id integer NOT NULL
+    employee_id bigint NOT NULL
 );
-
 
 ALTER TABLE public.salary OWNER TO postgres;
 
@@ -259,8 +227,8 @@ ALTER TABLE public.salary OWNER TO postgres;
 --
 
 CREATE TABLE public.takerooms (
-    department_id integer NOT NULL,
-    room_id integer NOT NULL,
+    department_id bigint NOT NULL,
+    room_id bigint NOT NULL,
     take_time timestamp without time zone NOT NULL
 );
 
@@ -273,11 +241,11 @@ ALTER TABLE public.takerooms OWNER TO postgres;
 --
 
 CREATE TABLE public.tasks (
-    task_id integer NOT NULL,
+    task_id bigint NOT NULL,
     name character varying(100) NOT NULL,
     start_time date NOT NULL,
     end_time date NOT NULL,
-    project_id integer NOT NULL
+    project_id bigint NOT NULL
 );
 
 
@@ -300,7 +268,7 @@ CREATE SEQUENCE public.tasks_task_id_seq
 ALTER SEQUENCE public.tasks_task_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4957 (class 0 OID 0)
+-- TOC entry 4956 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: tasks_task_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -309,7 +277,7 @@ ALTER SEQUENCE public.tasks_task_id_seq OWNED BY public.tasks.task_id;
 
 
 --
--- TOC entry 4741 (class 2604 OID 41219)
+-- TOC entry 4741 (class 2604 OID 41417)
 -- Name: budgets id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -325,7 +293,7 @@ ALTER TABLE ONLY public.rooms ALTER COLUMN id SET DEFAULT nextval('public.rooms_
 
 
 --
--- TOC entry 4742 (class 2604 OID 41292)
+-- TOC entry 4742 (class 2604 OID 41609)
 -- Name: tasks task_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -453,7 +421,7 @@ COPY public.tasks (task_id, name, start_time, end_time, project_id) FROM stdin;
 
 
 --
--- TOC entry 4958 (class 0 OID 0)
+-- TOC entry 4957 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: budgets_budget_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -462,7 +430,7 @@ SELECT pg_catalog.setval('public.budgets_budget_id_seq', 1, false);
 
 
 --
--- TOC entry 4959 (class 0 OID 0)
+-- TOC entry 4958 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: rooms_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -471,7 +439,7 @@ SELECT pg_catalog.setval('public.rooms_id_seq', 1, false);
 
 
 --
--- TOC entry 4960 (class 0 OID 0)
+-- TOC entry 4959 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: tasks_task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -480,7 +448,7 @@ SELECT pg_catalog.setval('public.tasks_task_id_seq', 1, false);
 
 
 --
--- TOC entry 4752 (class 2606 OID 41221)
+-- TOC entry 4752 (class 2606 OID 41419)
 -- Name: budgets budgets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -489,7 +457,7 @@ ALTER TABLE ONLY public.budgets
 
 
 --
--- TOC entry 4754 (class 2606 OID 41233)
+-- TOC entry 4754 (class 2606 OID 41434)
 -- Name: clients clients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -507,7 +475,7 @@ ALTER TABLE ONLY public.companies
 
 
 --
--- TOC entry 4750 (class 2606 OID 41200)
+-- TOC entry 4750 (class 2606 OID 41453)
 -- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -516,7 +484,7 @@ ALTER TABLE ONLY public.companies
 
 
 --
--- TOC entry 4756 (class 2606 OID 41243)
+-- TOC entry 4756 (class 2606 OID 41480)
 -- Name: departments departments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -534,7 +502,7 @@ ALTER TABLE ONLY public.employees
 
 
 --
--- TOC entry 4760 (class 2606 OID 41260)
+-- TOC entry 4760 (class 2606 OID 41510)
 -- Name: employees employees_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -543,7 +511,7 @@ ALTER TABLE ONLY public.employees
 
 
 --
--- TOC entry 4768 (class 2606 OID 41315)
+-- TOC entry 4768 (class 2606 OID 41537)
 -- Name: laptops laptops_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -561,7 +529,7 @@ ALTER TABLE ONLY public.offices
 
 
 --
--- TOC entry 4764 (class 2606 OID 41282)
+-- TOC entry 4764 (class 2606 OID 41553)
 -- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -588,7 +556,7 @@ ALTER TABLE ONLY public.rooms
 
 
 --
--- TOC entry 4762 (class 2606 OID 41272)
+-- TOC entry 4762 (class 2606 OID 41573)
 -- Name: salary salary_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -597,7 +565,7 @@ ALTER TABLE ONLY public.salary
 
 
 --
--- TOC entry 4776 (class 2606 OID 41406)
+-- TOC entry 4776 (class 2606 OID 41599)
 -- Name: takerooms takerooms_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -606,7 +574,7 @@ ALTER TABLE ONLY public.takerooms
 
 
 --
--- TOC entry 4766 (class 2606 OID 41294)
+-- TOC entry 4766 (class 2606 OID 41611)
 -- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -615,7 +583,7 @@ ALTER TABLE ONLY public.tasks
 
 
 --
--- TOC entry 4777 (class 2606 OID 41222)
+-- TOC entry 4777 (class 2606 OID 41464)
 -- Name: budgets budgets_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -624,7 +592,7 @@ ALTER TABLE ONLY public.budgets
 
 
 --
--- TOC entry 4778 (class 2606 OID 41234)
+-- TOC entry 4778 (class 2606 OID 41469)
 -- Name: clients clients_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -633,7 +601,7 @@ ALTER TABLE ONLY public.clients
 
 
 --
--- TOC entry 4779 (class 2606 OID 41244)
+-- TOC entry 4779 (class 2606 OID 41500)
 -- Name: departments departments_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -642,7 +610,7 @@ ALTER TABLE ONLY public.departments
 
 
 --
--- TOC entry 4780 (class 2606 OID 41263)
+-- TOC entry 4780 (class 2606 OID 41526)
 -- Name: employees employees_department_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -651,7 +619,7 @@ ALTER TABLE ONLY public.employees
 
 
 --
--- TOC entry 4784 (class 2606 OID 41316)
+-- TOC entry 4784 (class 2606 OID 41542)
 -- Name: laptops laptops_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -660,7 +628,7 @@ ALTER TABLE ONLY public.laptops
 
 
 --
--- TOC entry 4785 (class 2606 OID 41352)
+-- TOC entry 4785 (class 2606 OID 41625)
 -- Name: offices offices_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -669,7 +637,7 @@ ALTER TABLE ONLY public.offices
 
 
 --
--- TOC entry 4782 (class 2606 OID 41283)
+-- TOC entry 4782 (class 2606 OID 41563)
 -- Name: projects projects_department_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -687,7 +655,7 @@ ALTER TABLE ONLY public.rooms
 
 
 --
--- TOC entry 4781 (class 2606 OID 41273)
+-- TOC entry 4781 (class 2606 OID 41578)
 -- Name: salary salary_employee_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -696,7 +664,7 @@ ALTER TABLE ONLY public.salary
 
 
 --
--- TOC entry 4787 (class 2606 OID 41412)
+-- TOC entry 4787 (class 2606 OID 41589)
 -- Name: takerooms takerooms_department_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -705,7 +673,7 @@ ALTER TABLE ONLY public.takerooms
 
 
 --
--- TOC entry 4788 (class 2606 OID 41407)
+-- TOC entry 4788 (class 2606 OID 41600)
 -- Name: takerooms takerooms_room_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -714,7 +682,7 @@ ALTER TABLE ONLY public.takerooms
 
 
 --
--- TOC entry 4783 (class 2606 OID 41295)
+-- TOC entry 4783 (class 2606 OID 41616)
 -- Name: tasks tasks_project_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -722,7 +690,7 @@ ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT tasks_project_id_fkey FOREIGN KEY (project_id) REFERENCES public.projects(id) ON DELETE CASCADE;
 
 
--- Completed on 2025-10-29 14:00:36
+-- Completed on 2025-10-30 12:20:27
 
 --
 -- PostgreSQL database dump complete

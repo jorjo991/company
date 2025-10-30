@@ -6,12 +6,12 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Budget {
 
-    private int budgetID;
+    private Long budgetID;
     private Double totalAmount;
     private Double spent;
     private String belongs;
 
-    public Budget(int budgetID, Double totalAmount, Double spent, String belongs) {
+    public Budget(Long budgetID, Double totalAmount, Double spent, String belongs) {
         this.budgetID = budgetID;
         this.totalAmount = totalAmount;
         this.spent = spent;
@@ -31,11 +31,11 @@ public class Budget {
                 '}';
     }
 
-    public int getBudgetID() {
+    public Long getBudgetID() {
         return budgetID;
     }
 
-    public void setBudgetID(int budgetID) {
+    public void setBudgetID(Long budgetID) {
         this.budgetID = budgetID;
     }
 

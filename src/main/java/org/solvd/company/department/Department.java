@@ -11,7 +11,7 @@ import java.util.List;
 public class Department {
 
     @XmlAttribute(name = "id")
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -29,7 +29,7 @@ public class Department {
     @XmlElement(name = "project")
     private List<Project> projects;
 
-    public Department(int id, String name, String departmentNumber, List<Employee> employees) {
+    public Department(Long id, String name, String departmentNumber, List<Employee> employees) {
         this.id = id;
         this.name = name;
         this.departmentNumber = departmentNumber;
@@ -52,7 +52,7 @@ public class Department {
                 '}';
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -80,7 +80,7 @@ public class Department {
         this.employees = employees;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 public class Project {
 
     @XmlAttribute(name = "id")
-    private int id;
+    private Long id;
 
     @XmlElement(name = "name")
     private String name;
@@ -20,7 +20,7 @@ public class Project {
     @XmlElement(name = "finished")
     private boolean finished;
 
-    public Project(int id, String name) {
+    public Project(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -39,11 +39,11 @@ public class Project {
                 '}';
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

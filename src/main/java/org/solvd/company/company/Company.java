@@ -15,6 +15,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Company {
 
+    private Long id;
     @XmlElement(name = "name")
     private String name;
 
@@ -31,8 +32,8 @@ public class Company {
 
     private List<Office> offices;
 
-    public Company(String name, Address address, Budget budget) {
-
+    public Company(Long id, String name, Address address, Budget budget) {
+        this.id = id;
         this.name = name;
         this.departments = new ArrayList<>();
         this.clients = new ArrayList<>();
@@ -46,12 +47,21 @@ public class Company {
     @Override
     public String toString() {
         return "Company{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", budget=" + budget +
                 ", clients=" + clients +
                 ", departments=" + departments +
                 ", offices=" + offices +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

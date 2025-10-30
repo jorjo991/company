@@ -11,9 +11,8 @@ import java.time.LocalDate;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Task {
-
+    private Long id;
     private String name;
-
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     @XmlElement(name = "startTime")
     private LocalDate startTime;
@@ -23,7 +22,8 @@ public class Task {
     @XmlElement(name = "endTime")
     private LocalDate endTime;
 
-    public Task(String name, LocalDate startTime, LocalDate endTime) {
+    public Task(Long id, String name, LocalDate startTime, LocalDate endTime) {
+        this.id = id;
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -36,10 +36,19 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

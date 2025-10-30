@@ -2,14 +2,14 @@ package org.solvd.company.equipment;
 
 public class Laptop {
 
-    private  int id;
-    private  String brand;
-    private  String model;
-    private  String color;
+    private Long id;
+    private String brand;
+    private String model;
+    private String color;
 
-    public Laptop(int id, String brand, String model, String color) {
+    public Laptop(Long id, String brand, String model, String color) {
         this.id = id;
-        this.brand= brand;
+        this.brand = brand;
         this.model = model;
         this.color = color;
     }
@@ -24,11 +24,11 @@ public class Laptop {
                 '}';
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

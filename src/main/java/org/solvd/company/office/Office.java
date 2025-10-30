@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Office {
 
-    private long id;
+    private Long id;
     private String name;
-    private int capacity;
+    private Integer capacity;
     private Address address;
     private List<Room> rooms;
 
