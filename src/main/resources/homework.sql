@@ -499,6 +499,23 @@ select MIN(age) as avarge_age from clients group by id;
 select count(e.id),s.amount
 from employees  e join  salary s on e.id=s.employee_id group by s.amount; 
 
+--group by with aggreagtion functions and having 
+select * from employees;
+select sum(age) as min_age from clients group by age  having age>30; 
+select AVG(age) as avarage_age from employees group by age having AVG(age)>20;  
+select  s.amount as salary
+from employees  e join  salary s on e.id=s.employee_id 
+group by s.amount having min(s.amount)>2500;  
+select  count (name), name  from employees group by name having AVG(age)>30;  
+select  count (id), name  from employees group by id having id>5;  
+select  MAX(age), name  from employees group by name having AVG(age)>30;  
+select count(c.id),c.id as company_id
+from companies c join departments d on c.id=d.company_id group by  c.id having c.id>5 order by c.id;
+
+
+
+
+
 
 
 
