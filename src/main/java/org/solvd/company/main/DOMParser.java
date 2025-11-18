@@ -1,7 +1,7 @@
 package org.solvd.company.main;
 
-import org.solvd.company.company.Company;
-import org.solvd.company.employees.EmployeeType;
+import org.solvd.company.domain.company.Company;
+import org.solvd.company.domain.employees.EmployeeType;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

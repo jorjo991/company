@@ -3,7 +3,7 @@ package org.solvd.company.main;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.solvd.company.company.Company;
+import org.solvd.company.domain.company.Company;
 
 import java.io.File;
 import java.io.IOException;

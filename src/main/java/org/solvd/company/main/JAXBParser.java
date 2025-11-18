@@ -3,7 +3,7 @@ package org.solvd.company.main;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
-import org.solvd.company.company.Company;
+import org.solvd.company.domain.company.Company;
 
 import java.io.File;
 
