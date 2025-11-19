@@ -22,14 +22,14 @@ public class Main {
 //            companyRepositoryImp.update(company);
 //            companyRepositoryImp.delete(company);
 
-            TaskRepositoryImp taskRepositoryImp=  new TaskRepositoryImp();
+            TaskRepositoryImp taskRepositoryImp = new TaskRepositoryImp();
             System.out.println(taskRepositoryImp.get(1L));
             System.out.println(taskRepositoryImp.readAll());
             LaptopRepositoryImp laptopRepositoryImp = new LaptopRepositoryImp();
             System.out.println(laptopRepositoryImp.get(1L));
             System.out.println(laptopRepositoryImp.readAll());
 
-            ClientsRepositoryImp clientsRepositoryImp= new ClientsRepositoryImp();
+            ClientsRepositoryImp clientsRepositoryImp = new ClientsRepositoryImp();
             System.out.println(clientsRepositoryImp.get(2L));
             System.out.println(clientsRepositoryImp.readAll());
         } catch (SQLException e) {

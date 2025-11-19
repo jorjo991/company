@@ -71,7 +71,6 @@ delete from budgets;
 
 select * from budgets; 
 
-
 --Department data  
 
 INSERT INTO public.departments (name, "number", company_id)

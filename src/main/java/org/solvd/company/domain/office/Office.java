@@ -19,9 +19,11 @@ public class Office {
         this.capacity = capacity;
         this.address = address;
     }
-    public  Office(){
+
+    public Office() {
 
     }
+
     @Override
     public String toString() {
         return "Office{" +

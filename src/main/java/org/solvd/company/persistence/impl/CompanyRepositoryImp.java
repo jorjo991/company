@@ -12,34 +12,33 @@ import org.solvd.company.domain.office.Office;
 import org.solvd.company.domain.office.Room;
 import org.solvd.company.domain.project.Project;
 import org.solvd.company.domain.task.Task;
-import org.solvd.company.persistence.DaoInteface.CompanyRepository;
+import org.solvd.company.persistence.CompanyRepository;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
 
-public class CompanyRepositoryImp implements CompanyRepository<Company> {
-    ConnectionPool connectionPool=ConnectionPool.getInstance();
+public class CompanyRepositoryImp implements CompanyRepository {
+
+    ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
     public void create(Company company) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String createStatement = "Insert into companies (id,name) values (?,?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(createStatement)) {
-            preparedStatement.setLong(1, company.getId());
+        try (PreparedStatement preparedStatement = connection.prepareStatement(createStatement, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(2, company.getName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
     public void update(Company company) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String updateCommand = "update companies  set name =? where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(updateCommand)) {
             preparedStatement.setLong(2, company.getId());
@@ -47,15 +46,14 @@ public class CompanyRepositoryImp implements CompanyRepository<Company> {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
-    public Company get(Long id) {
-        Connection connection=connectionPool.getConnection();
+    public Optional<Company> get(Long id) {
+        Connection connection = connectionPool.getConnection();
         // this query join company-> clients , office -> address , rooms   5 table join in general
         String getCommand = "select  \n" +
                 "c.id as company_id, c.name as company_name,  \n" +
@@ -224,11 +222,10 @@ public class CompanyRepositoryImp implements CompanyRepository<Company> {
                 }
 
             }
-            return company;
+            return Optional.of(company);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
 
@@ -236,22 +233,21 @@ public class CompanyRepositoryImp implements CompanyRepository<Company> {
 
     @Override
     public void delete(Company company) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String deleteString = "Delete from companies where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(deleteString)) {
             preparedStatement.setLong(1, company.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
     public List<Company> readAll() {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         Map<Long, Company> companyMap = new HashMap<>();
         // this query join company-> clients , office -> address , rooms   5 table join in general
         String getCommand = "select  \n" +
@@ -436,8 +432,7 @@ public class CompanyRepositoryImp implements CompanyRepository<Company> {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }

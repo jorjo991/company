@@ -16,7 +16,8 @@ public class Room {
         this.available = available;
         this.roomNumber = roomNumber;
     }
-    public Room (){
+
+    public Room() {
 
     }
 

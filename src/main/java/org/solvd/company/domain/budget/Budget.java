@@ -11,7 +11,6 @@ public class Budget {
     private Double spent;
     private String description;
 
-
     public Budget(Long budgetID, Double totalAmount, Double spent, String description) {
         this.id = budgetID;
         this.totalAmount = totalAmount;

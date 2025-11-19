@@ -1,25 +1,25 @@
 package org.solvd.company.persistence.impl;
 
 import org.solvd.company.domain.client.Client;
-import org.solvd.company.persistence.DaoInteface.ClientsRepository;
+import org.solvd.company.persistence.ClientsRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ClientsRepositoryImp implements ClientsRepository {
 
-   private final ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
     public void create(Client client, Long companyId) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String create =
                 "INSERT INTO clients (id, name, surname, email, birthday, active, company_id, age) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement ps = connection.prepareStatement(create)) {
-            ps.setLong(1, client.getId());
+        try (PreparedStatement ps = connection.prepareStatement(create, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(2, client.getName());
             ps.setString(3, client.getSurname());
             ps.setString(4, client.getEmail());
@@ -38,7 +38,7 @@ public class ClientsRepositoryImp implements ClientsRepository {
 
     @Override
     public void update(Client client) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String update =
                 "UPDATE clients SET name=?, surname=?, email=?, birthday=?, active=?, age=? WHERE id=?";
 
@@ -60,11 +60,10 @@ public class ClientsRepositoryImp implements ClientsRepository {
     }
 
     @Override
-    public Client get(Long id) {
-        Connection connection=connectionPool.getConnection();
-        String get = "SELECT * FROM clients WHERE id=?";
+    public Optional<Client> get(Long id) {
+        Connection connection = connectionPool.getConnection();
+        String get = "SELECT id,name,surname,email,birthday,active,age  FROM clients WHERE id=?";
         Client client = null;
-
         try (PreparedStatement ps = connection.prepareStatement(get)) {
             ps.setLong(1, id);
 
@@ -79,12 +78,12 @@ public class ClientsRepositoryImp implements ClientsRepository {
             connectionPool.releaseConnection(connection);
         }
 
-        return client;
+        return Optional.of(client);
     }
 
     @Override
     public void delete(Client client) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String delete = "DELETE FROM clients WHERE id=?";
 
         try (PreparedStatement ps = connection.prepareStatement(delete)) {
@@ -99,8 +98,8 @@ public class ClientsRepositoryImp implements ClientsRepository {
 
     @Override
     public List<Client> readAll() {
-        Connection connection=connectionPool.getConnection();
-        String getAll = "SELECT * FROM clients";
+        Connection connection = connectionPool.getConnection();
+        String getAll = "SELECT id,name,surname,email,birthday,active,age FROM clients";
         List<Client> list = new ArrayList<>();
 
         try (PreparedStatement ps = connection.prepareStatement(getAll)) {

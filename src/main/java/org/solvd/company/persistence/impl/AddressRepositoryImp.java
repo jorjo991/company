@@ -1,14 +1,12 @@
 package org.solvd.company.persistence.impl;
 
 import org.solvd.company.domain.company.Address;
-import org.solvd.company.persistence.DaoInteface.AddressRepository;
+import org.solvd.company.persistence.AddressRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AddressRepositoryImp implements AddressRepository {
 
@@ -20,12 +18,11 @@ public class AddressRepositoryImp implements AddressRepository {
         String createStatement =
                 "INSERT INTO addresses (city, street, number, office_id, id) VALUES (?,?,?,?,?)";
 
-        try (PreparedStatement ps = connection.prepareStatement(createStatement)) {
+        try (PreparedStatement ps = connection.prepareStatement(createStatement, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, address.getCity());
             ps.setString(2, address.getStreet());
             ps.setString(3, address.getNumber());
             ps.setLong(4, officeId);
-            ps.setLong(5, address.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to create address: " + e.getMessage(), e);
@@ -53,9 +50,9 @@ public class AddressRepositoryImp implements AddressRepository {
     }
 
     @Override
-    public Address get(Long id) {
+    public Optional<Address> get(Long id) {
         Connection connection = pool.getConnection();
-        String get = "SELECT * FROM addresses WHERE id=?";
+        String get = "SELECT city, street, number, office_id, id FROM addresses WHERE id=?";
         Address address = null;
 
         try (PreparedStatement ps = connection.prepareStatement(get)) {
@@ -71,7 +68,7 @@ public class AddressRepositoryImp implements AddressRepository {
             pool.releaseConnection(connection);
         }
 
-        return address;
+        return Optional.of(address);
     }
 
     @Override
@@ -94,7 +91,7 @@ public class AddressRepositoryImp implements AddressRepository {
     public List<Address> readAll() {
         Connection connection = pool.getConnection();
 
-        String getAll = "SELECT * FROM addresses";
+        String getAll = "SELECT city, street, number,id  FROM addresses";
         List<Address> list = new ArrayList<>();
 
         try (PreparedStatement ps = connection.prepareStatement(getAll)) {

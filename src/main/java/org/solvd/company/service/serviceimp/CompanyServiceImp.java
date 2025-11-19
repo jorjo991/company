@@ -1,28 +1,32 @@
-package org.solvd.company.service;
+package org.solvd.company.service.serviceimp;
 
+import org.solvd.company.domain.client.Client;
 import org.solvd.company.domain.company.Company;
+import org.solvd.company.persistence.impl.ClientsRepositoryImp;
 import org.solvd.company.persistence.impl.CompanyRepositoryImp;
-import org.solvd.company.service.interfcae.CompanyService;
+import org.solvd.company.service.CompanyService;
 
 import java.util.List;
 
 public class CompanyServiceImp implements CompanyService {
 
-    private CompanyRepositoryImp companyRepositoryImp;
+    private final CompanyRepositoryImp companyRepositoryImp;
 
     public CompanyServiceImp(CompanyRepositoryImp companyRepositoryImp) {
         this.companyRepositoryImp = companyRepositoryImp;
     }
 
     public void create(Company company) {
+        ClientServiceImp clientServiceImp = new ClientServiceImp(new ClientsRepositoryImp());
+        for (Client client : company.getClients()) {
+            clientServiceImp.create(client, company.getId());
+        }
         companyRepositoryImp.create(company);
     }
 
     @Override
     public Company getCompanyById(Long id) {
-        Company company = companyRepositoryImp.get(id);
-        if (company == null) throw new RuntimeException("Company is not Presented");
-        return company;
+        return companyRepositoryImp.get(id).orElseThrow(() -> new RuntimeException("Company not found with id " + id));
     }
 
     @Override

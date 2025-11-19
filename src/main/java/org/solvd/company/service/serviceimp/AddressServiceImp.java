@@ -1,8 +1,8 @@
-package org.solvd.company.service;
+package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.company.Address;
 import org.solvd.company.persistence.impl.AddressRepositoryImp;
-import org.solvd.company.service.interfcae.AddressService;
+import org.solvd.company.service.AddressService;
 
 import java.util.List;
 
@@ -21,11 +21,7 @@ public class AddressServiceImp implements AddressService {
 
     @Override
     public Address getAddressById(Long id) {
-        Address address = addressRepositoryImp.get(id);
-        if (address == null) {
-            throw new RuntimeException("Address not found with id = " + id);
-        }
-        return address;
+        return addressRepositoryImp.get(id).orElseThrow(() -> new RuntimeException("Laptop not found with id " + id));
     }
 
     @Override

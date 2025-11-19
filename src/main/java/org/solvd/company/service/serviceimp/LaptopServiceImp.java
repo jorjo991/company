@@ -1,14 +1,14 @@
-package org.solvd.company.service;
+package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.equipment.Laptop;
 import org.solvd.company.persistence.impl.LaptopRepositoryImp;
-import org.solvd.company.service.interfcae.LaptopService;
+import org.solvd.company.service.LaptopService;
 
 import java.util.List;
 
 public class LaptopServiceImp implements LaptopService {
 
-    private LaptopRepositoryImp laptopRepositoryImp;
+    private final LaptopRepositoryImp laptopRepositoryImp;
 
     public LaptopServiceImp(LaptopRepositoryImp laptopRepositoryImp) {
         this.laptopRepositoryImp = laptopRepositoryImp;
@@ -22,11 +22,8 @@ public class LaptopServiceImp implements LaptopService {
 
     @Override
     public Laptop getLaptopById(Long id) {
-        Laptop laptop = laptopRepositoryImp.get(id);
-        if (laptop == null) {
-            throw new RuntimeException("Laptop not found");
-        }
-        return laptop;
+        return laptopRepositoryImp.get(id).orElseThrow(() -> new RuntimeException("Laptop not found with id " + id));
+
     }
 
     @Override

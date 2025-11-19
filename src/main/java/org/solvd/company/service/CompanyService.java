@@ -1,4 +1,4 @@
-package org.solvd.company.service.interfcae;
+package org.solvd.company.service;
 
 import org.solvd.company.domain.company.Company;
 

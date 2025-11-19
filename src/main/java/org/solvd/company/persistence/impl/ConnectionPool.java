@@ -64,7 +64,8 @@ public class ConnectionPool {
         for (Connection connection : connectionPool) {
             try {
                 connection.close();
-            } catch (SQLException ignored) {}
+            } catch (SQLException ignored) {
+            }
         }
     }
 }

@@ -1,29 +1,26 @@
 package org.solvd.company.persistence.impl;
 
 import org.solvd.company.domain.budget.Budget;
-import org.solvd.company.persistence.DaoInteface.BudgetRepository;
+import org.solvd.company.persistence.BudgetRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BudgetRepositoryImp implements BudgetRepository {
 
-    private final ConnectionPool connectionPool=ConnectionPool.getInstance();
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
     public void create(Budget budget, Long companyId) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String createStatement = "Insert into budgets (total_amount,spend_amount,description,company_id,id) values (?,?,?,?,?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(createStatement)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(createStatement, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setDouble(1, budget.getTotalAmount());
             preparedStatement.setDouble(2, budget.getSpent());
             preparedStatement.setString(3, budget.getBelongs());
             preparedStatement.setLong(4, companyId);
-            preparedStatement.setLong(5, budget.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -32,7 +29,7 @@ public class BudgetRepositoryImp implements BudgetRepository {
 
     @Override
     public void update(Budget budget) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
 
         String updateCommand = "update budgets  set total_amount =? where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(updateCommand)) {
@@ -41,16 +38,15 @@ public class BudgetRepositoryImp implements BudgetRepository {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
-    public Budget get(Long id) {
-        Connection connection=connectionPool.getConnection();
-        String getCommand = "select * from budgets where id=?";
+    public Optional<Budget> get(Long id) {
+        Connection connection = connectionPool.getConnection();
+        String getCommand = "select id,total_amount,spend_amount,description from budgets where id=?";
         Budget budget = new Budget();
         try (PreparedStatement preparedStatement = connection.prepareStatement(getCommand)) {
             preparedStatement.setLong(1, id);
@@ -60,35 +56,33 @@ public class BudgetRepositoryImp implements BudgetRepository {
                         resultSet.getDouble("total_amount"),
                         resultSet.getDouble("spend_amount"), resultSet.getString("description"));
             }
-            return budget;
+            return Optional.of(budget);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
     public void delete(Budget budget) {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         String deleteString = "Delete from budgets where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(deleteString)) {
             preparedStatement.setLong(1, budget.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
     public List<Budget> readAll() {
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         List<Budget> budgets = new ArrayList<>();
-        String getCommand = "select * from budgets";
+        String getCommand = "select  id,total_amount,spend_amount,description from budgets";
         Budget budget = new Budget();
         try (PreparedStatement preparedStatement = connection.prepareStatement(getCommand)) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -101,8 +95,7 @@ public class BudgetRepositoryImp implements BudgetRepository {
             return budgets;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }

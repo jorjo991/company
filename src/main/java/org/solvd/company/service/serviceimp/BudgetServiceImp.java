@@ -1,8 +1,11 @@
-package org.solvd.company.service;
+package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.budget.Budget;
+import org.solvd.company.domain.client.Client;
 import org.solvd.company.persistence.impl.BudgetRepositoryImp;
-import org.solvd.company.service.interfcae.BudgetService;
+import org.solvd.company.persistence.impl.ClientsRepositoryImp;
+import org.solvd.company.service.BudgetService;
+import org.solvd.company.service.ClientService;
 
 import java.util.List;
 
@@ -11,22 +14,20 @@ public class BudgetServiceImp implements BudgetService {
     private final BudgetRepositoryImp budgetRepositoryImp;
 
     public BudgetServiceImp(BudgetRepositoryImp budgetRepositoryImp) {
-
         this.budgetRepositoryImp = budgetRepositoryImp;
     }
 
     @Override
     public void create(Budget budget, Long companyID) {
+        ClientServiceImp clientServiceImp = new ClientServiceImp(new ClientsRepositoryImp());
+        clientServiceImp.create(new Client(), companyID);
         budgetRepositoryImp.create(budget, companyID);
     }
 
     @Override
     public Budget getBudgetById(Long id) {
-        Budget budget = budgetRepositoryImp.get(id);
-        if (budget == null) {
-            throw new RuntimeException("Budget not found with id = " + id);
-        }
-        return budget;
+
+        return budgetRepositoryImp.get(id).orElseThrow(() -> new RuntimeException("Budget is not presented"));
     }
 
     @Override

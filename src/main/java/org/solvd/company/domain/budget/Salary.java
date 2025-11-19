@@ -10,8 +10,8 @@ public class Salary {
     private Double bonus;
     private Integer cutPercentage;
 
-    public Salary(Long id,Double amount, Double bonus, Integer cutPercentage) {
-        this.id=id;
+    public Salary(Long id, Double amount, Double bonus, Integer cutPercentage) {
+        this.id = id;
         this.amount = amount;
         this.bonus = bonus;
         this.cutPercentage = cutPercentage;

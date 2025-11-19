@@ -1,14 +1,12 @@
 package org.solvd.company.persistence.impl;
 
 import org.solvd.company.domain.equipment.Laptop;
-import org.solvd.company.persistence.DaoInteface.LaptopRepository;
+import org.solvd.company.persistence.LaptopRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class LaptopRepositoryImp implements LaptopRepository {
 
@@ -19,11 +17,10 @@ public class LaptopRepositoryImp implements LaptopRepository {
         Connection connection = connectionPool.getConnection();
         String sql = "INSERT INTO laptops (name, brand, color, employee_id, id) VALUES (?,?,?,?,?)";
 
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, laptop.getName());
             ps.setString(2, laptop.getBrand());
             ps.setLong(4, employeeId);
-            ps.setLong(5, laptop.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to create laptop: " + e.getMessage(), e);
@@ -51,10 +48,10 @@ public class LaptopRepositoryImp implements LaptopRepository {
     }
 
     @Override
-    public Laptop get(Long id) {
+    public Optional<Laptop> get(Long id) {
         Connection connection = connectionPool.getConnection();
-        String sql = "SELECT * FROM laptops WHERE id=?";
-        Laptop laptop = null;
+        String sql = "SELECT id,name,brand,color FROM laptops WHERE id=?";
+        Laptop laptop = new Laptop();
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, id);
@@ -68,29 +65,28 @@ public class LaptopRepositoryImp implements LaptopRepository {
         } finally {
             connectionPool.releaseConnection(connection);
         }
-        return laptop;
+        return Optional.of(laptop);
     }
 
     @Override
     public void delete(Laptop laptop) {
         String sql = "DELETE FROM laptops WHERE id=?";
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, laptop.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to delete laptop: " + e.getMessage(), e);
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
     public List<Laptop> readAll() {
-        String sql = "SELECT * FROM laptops";
+        String sql = "SELECT id,name,brand,color FROM laptops";
         List<Laptop> laptops = new ArrayList<>();
-        Connection connection=connectionPool.getConnection();
+        Connection connection = connectionPool.getConnection();
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
@@ -100,8 +96,7 @@ public class LaptopRepositoryImp implements LaptopRepository {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to read laptops: " + e.getMessage(), e);
-        }
-        finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
 

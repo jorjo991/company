@@ -1,15 +1,14 @@
-package org.solvd.company.service;
+package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.client.Client;
-import org.solvd.company.persistence.DaoInteface.ClientsRepository;
 import org.solvd.company.persistence.impl.ClientsRepositoryImp;
-import org.solvd.company.service.interfcae.ClientService;
+import org.solvd.company.service.ClientService;
 
 import java.util.List;
 
 public class ClientServiceImp implements ClientService {
 
-    private ClientsRepositoryImp clientRepositoryImp;
+    private final ClientsRepositoryImp clientRepositoryImp;
 
     public ClientServiceImp(ClientsRepositoryImp clientRepositoryImp) {
         this.clientRepositoryImp = clientRepositoryImp;
@@ -22,11 +21,7 @@ public class ClientServiceImp implements ClientService {
 
     @Override
     public Client getClientById(Long id) {
-        Client client = clientRepositoryImp.get(id);
-        if (client == null) {
-            throw new RuntimeException("Client not found with id = " + id);
-        }
-        return client;
+        return clientRepositoryImp.get(id).orElseThrow(() -> new RuntimeException("Client not found with id " + id));
     }
 
     @Override
