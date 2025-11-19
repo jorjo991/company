@@ -4,6 +4,7 @@ import org.solvd.company.domain.client.Client;
 import org.solvd.company.domain.company.Company;
 import org.solvd.company.persistence.CompanyRepository;
 import org.solvd.company.persistence.impl.ClientsRepositoryImp;
+import org.solvd.company.service.ClientService;
 import org.solvd.company.service.CompanyService;
 
 import java.util.List;
@@ -11,16 +12,17 @@ import java.util.List;
 public class CompanyServiceImp implements CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final ClientService clientService;
 
-    public CompanyServiceImp(CompanyRepository companyRepository) {
+    public CompanyServiceImp(CompanyRepository companyRepository, ClientService clientService) {
         this.companyRepository = companyRepository;
+        this.clientService = clientService;
     }
 
     public void create(Company company) {
         companyRepository.create(company);
-        ClientServiceImp clientServiceImp = new ClientServiceImp(new ClientsRepositoryImp());
         for (Client client : company.getClients()) {
-            clientServiceImp.create(client, company.getId());
+            clientService.create(client, company.getId());
         }
     }
 
