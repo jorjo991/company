@@ -25,10 +25,14 @@ public class CompanyRepositoryImp implements CompanyRepository {
     @Override
     public void create(Company company) {
         Connection connection = connectionPool.getConnection();
-        String createStatement = "Insert into companies (id,name) values (?,?)";
+        String createStatement = "Insert into companies (name) values (?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(createStatement, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(2, company.getName());
+            preparedStatement.setString(1, company.getName());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                company.setId(resultSet.getLong(1));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -91,7 +95,6 @@ public class CompanyRepositoryImp implements CompanyRepository {
                 // get offices of company and their rooms
                 Room currentRoom = getRoom(resultSet.getLong("room_id"), resultSet.getInt("room_capacity"), resultSet.getBoolean("room_available"), resultSet.getString("room_number"));
                 Long currentOfficeID = resultSet.getLong("office_id");
-                System.out.println(currentOfficeID);
                 if (!officeIds.contains(currentOfficeID)) {
                     Address address = getAddress(resultSet.getLong("address_id"),
                             resultSet.getString("address_city"),
@@ -112,9 +115,6 @@ public class CompanyRepositoryImp implements CompanyRepository {
             company.setOffices(offices);
             company.setId(companyId);
             company.setName(companyName);
-            System.out.println(company.getClients());
-            System.out.println(company.getOffices());
-            System.out.println(company.getName());
 
             //  map departments->(project->task),(employee->salary)
             String query = "SELECT  c.id AS company_id,c.name AS company_name,\n" +
@@ -201,7 +201,6 @@ public class CompanyRepositoryImp implements CompanyRepository {
                     }
                 }
                 company.setDepartments(departmentMap.values().stream().toList());
-                System.out.println(company.getDepartments());
 
                 String selectForBudget = "select  b.id as budget_id, b.total_amount as budget_totalAmount ,  \n" +
                         "b.spend_amount as budget_spent, b.description \n" +
@@ -212,7 +211,7 @@ public class CompanyRepositoryImp implements CompanyRepository {
                 try (PreparedStatement budgetSelect = connection.prepareStatement(selectForBudget)) {
                     budgetSelect.setLong(1, id);
                     ResultSet budgetQueryResult = budgetSelect.executeQuery();
-                    while (resultSet.next()) {
+                    while (budgetQueryResult.next()) {
                         budget = getBudget(budgetQueryResult.getLong("budget_id"),
                                 budgetQueryResult.getDouble("budget_totalAmount"),
                                 budgetQueryResult.getDouble("budget_spent"),
@@ -411,7 +410,7 @@ public class CompanyRepositoryImp implements CompanyRepository {
                     companyMap.get(companyId).setDepartments(departmentMap.values().stream().toList());
                 }
 
-                String selectForBudget = "select  b.id as budget_id, b.total_amount as budget_totalAmount ,  \n" +
+                String selectForBudget = "select c.id as company_id, b.id as budget_id, b.total_amount as budget_totalAmount ,  \n" +
                         "b.spend_amount as budget_spent, b.description \n" +
                         "as budget_description from companies c \n" +
                         "left join budgets b on c.id=b.company_id ";
@@ -419,7 +418,7 @@ public class CompanyRepositoryImp implements CompanyRepository {
 
                 try (PreparedStatement budgetSelect = connection.prepareStatement(selectForBudget)) {
                     ResultSet budgetQueryResult = budgetSelect.executeQuery();
-                    while (resultSet.next()) {
+                    while (budgetQueryResult.next()) {
                         budget = getBudget(budgetQueryResult.getLong("budget_id"),
                                 budgetQueryResult.getDouble("budget_totalAmount"),
                                 budgetQueryResult.getDouble("budget_spent"),

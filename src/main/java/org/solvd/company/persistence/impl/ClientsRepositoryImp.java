@@ -16,17 +16,17 @@ public class ClientsRepositoryImp implements ClientsRepository {
     public void create(Client client, Long companyId) {
         Connection connection = connectionPool.getConnection();
         String create =
-                "INSERT INTO clients (id, name, surname, email, birthday, active, company_id, age) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "INSERT INTO clients (name, surname, email, birthday, active, company_id, age) " +
+                        "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(create, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(2, client.getName());
-            ps.setString(3, client.getSurname());
-            ps.setString(4, client.getEmail());
-            ps.setDate(5, client.getBirthday() != null ? Date.valueOf(client.getBirthday()) : null);
-            ps.setBoolean(6, client.getActive());
-            ps.setLong(7, companyId);
-            ps.setInt(8, client.getAge());
+            ps.setString(1, client.getName());
+            ps.setString(2, client.getSurname());
+            ps.setString(3, client.getEmail());
+            ps.setDate(4, client.getBirthday() != null ? Date.valueOf(client.getBirthday()) : null);
+            ps.setBoolean(5, client.getActive());
+            ps.setLong(6, companyId);
+            ps.setInt(7, client.getAge());
 
             ps.executeUpdate();
         } catch (SQLException e) {

@@ -15,12 +15,12 @@ public class LaptopRepositoryImp implements LaptopRepository {
     @Override
     public void create(Laptop laptop, Long employeeId) {
         Connection connection = connectionPool.getConnection();
-        String sql = "INSERT INTO laptops (name, brand, color, employee_id, id) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO laptops (name, brand, color, employee_id) VALUES (?,?,?,?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, laptop.getName());
             ps.setString(2, laptop.getBrand());
-            ps.setLong(4, employeeId);
+            ps.setLong(3, employeeId);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to create laptop: " + e.getMessage(), e);

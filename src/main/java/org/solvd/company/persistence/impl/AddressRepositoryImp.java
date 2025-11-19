@@ -16,7 +16,7 @@ public class AddressRepositoryImp implements AddressRepository {
     public void create(Address address, Long officeId) {
         Connection connection = pool.getConnection();
         String createStatement =
-                "INSERT INTO addresses (city, street, number, office_id, id) VALUES (?,?,?,?,?)";
+                "INSERT INTO addresses (city, street, number, office_id) VALUES (?,?,?,?)";
 
         try (PreparedStatement ps = connection.prepareStatement(createStatement, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, address.getCity());

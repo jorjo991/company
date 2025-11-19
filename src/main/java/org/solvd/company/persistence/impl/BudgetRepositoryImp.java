@@ -15,7 +15,7 @@ public class BudgetRepositoryImp implements BudgetRepository {
     @Override
     public void create(Budget budget, Long companyId) {
         Connection connection = connectionPool.getConnection();
-        String createStatement = "Insert into budgets (total_amount,spend_amount,description,company_id,id) values (?,?,?,?,?)";
+        String createStatement = "Insert into budgets (total_amount,spend_amount,description,company_id) values (?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(createStatement, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setDouble(1, budget.getTotalAmount());
             preparedStatement.setDouble(2, budget.getSpent());

@@ -17,7 +17,7 @@ public class TaskRepositoryImp implements TaskRepository {
     public void create(Task task, Long projectId) {
 
         Connection connection = connectionPool.getConnection();
-        String sql = "INSERT INTO tasks (name, start_time, end_time, project_id, id) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO tasks (name, start_time, end_time, project_id) VALUES (?,?,?,?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, task.getName());

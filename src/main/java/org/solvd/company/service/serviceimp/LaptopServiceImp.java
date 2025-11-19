@@ -1,43 +1,43 @@
 package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.equipment.Laptop;
-import org.solvd.company.persistence.impl.LaptopRepositoryImp;
+import org.solvd.company.persistence.LaptopRepository;
 import org.solvd.company.service.LaptopService;
 
 import java.util.List;
 
 public class LaptopServiceImp implements LaptopService {
 
-    private final LaptopRepositoryImp laptopRepositoryImp;
+    private final LaptopRepository laptopRepository;
 
-    public LaptopServiceImp(LaptopRepositoryImp laptopRepositoryImp) {
-        this.laptopRepositoryImp = laptopRepositoryImp;
+    public LaptopServiceImp(LaptopRepository laptopRepository) {
+        this.laptopRepository = laptopRepository;
     }
 
     @Override
     public void create(Laptop laptop, Long employeeId) {
 
-        laptopRepositoryImp.create(laptop, employeeId);
+        laptopRepository.create(laptop, employeeId);
     }
 
     @Override
     public Laptop getLaptopById(Long id) {
-        return laptopRepositoryImp.get(id).orElseThrow(() -> new RuntimeException("Laptop not found with id " + id));
+        return laptopRepository.get(id).orElseThrow(() -> new RuntimeException("Laptop not found with id " + id));
 
     }
 
     @Override
     public void updateLaptop(Laptop laptop) {
-        laptopRepositoryImp.update(laptop);
+        laptopRepository.update(laptop);
     }
 
     @Override
     public void deleteLaptop(Laptop laptop) {
-        laptopRepositoryImp.delete(laptop);
+        laptopRepository.delete(laptop);
     }
 
     @Override
     public List<Laptop> getAllLaptops() {
-        return laptopRepositoryImp.readAll();
+        return laptopRepository.readAll();
     }
 }
