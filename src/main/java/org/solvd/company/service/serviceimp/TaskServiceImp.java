@@ -2,6 +2,7 @@ package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.task.Task;
 import org.solvd.company.persistence.TaskRepository;
+import org.solvd.company.persistence.impl.TaskRepositoryImp;
 import org.solvd.company.service.TaskService;
 
 import java.util.List;
@@ -10,8 +11,8 @@ public class TaskServiceImp implements TaskService {
 
     private final TaskRepository taskRepository;
 
-    public TaskServiceImp(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
+    public TaskServiceImp() {
+        this.taskRepository = new TaskRepositoryImp();
     }
 
     @Override
@@ -21,7 +22,8 @@ public class TaskServiceImp implements TaskService {
 
     @Override
     public Task getTaskById(Long id) {
-        return taskRepository.get(id).orElseThrow(() -> new RuntimeException("Task not found with id " + id));
+        return taskRepository.get(id).
+                orElseThrow(() -> new RuntimeException("Task not found with id " + id));
 
     }
 

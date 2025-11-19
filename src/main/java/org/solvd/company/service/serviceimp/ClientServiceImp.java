@@ -2,6 +2,7 @@ package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.client.Client;
 import org.solvd.company.persistence.ClientsRepository;
+import org.solvd.company.persistence.impl.ClientsRepositoryImp;
 import org.solvd.company.service.ClientService;
 
 import java.util.List;
@@ -10,8 +11,8 @@ public class ClientServiceImp implements ClientService {
 
     private final ClientsRepository clientRepository;
 
-    public ClientServiceImp(ClientsRepository clientRepository) {
-        this.clientRepository = clientRepository;
+    public ClientServiceImp() {
+        this.clientRepository = new ClientsRepositoryImp();
     }
 
     @Override
@@ -21,7 +22,8 @@ public class ClientServiceImp implements ClientService {
 
     @Override
     public Client getClientById(Long id) {
-        return clientRepository.get(id).orElseThrow(() -> new RuntimeException("Client not found with id " + id));
+        return clientRepository.get(id).
+                orElseThrow(() -> new RuntimeException("Client not found with id " + id));
     }
 
     @Override

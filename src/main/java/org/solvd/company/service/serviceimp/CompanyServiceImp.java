@@ -4,6 +4,7 @@ import org.solvd.company.domain.client.Client;
 import org.solvd.company.domain.company.Company;
 import org.solvd.company.persistence.CompanyRepository;
 import org.solvd.company.persistence.impl.ClientsRepositoryImp;
+import org.solvd.company.persistence.impl.CompanyRepositoryImp;
 import org.solvd.company.service.ClientService;
 import org.solvd.company.service.CompanyService;
 
@@ -14,9 +15,9 @@ public class CompanyServiceImp implements CompanyService {
     private final CompanyRepository companyRepository;
     private final ClientService clientService;
 
-    public CompanyServiceImp(CompanyRepository companyRepository, ClientService clientService) {
-        this.companyRepository = companyRepository;
-        this.clientService = clientService;
+    public CompanyServiceImp() {
+        this.companyRepository = new CompanyRepositoryImp();
+        this.clientService = new ClientServiceImp();
     }
 
     public void create(Company company) {
@@ -28,7 +29,8 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public Company getCompanyById(Long id) {
-        return companyRepository.get(id).orElseThrow(() -> new RuntimeException("Company not found with id " + id));
+        return companyRepository.get(id).
+                orElseThrow(() -> new RuntimeException("Company not found with id " + id));
     }
 
     @Override

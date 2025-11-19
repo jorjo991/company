@@ -3,6 +3,7 @@ package org.solvd.company.service.serviceimp;
 import org.solvd.company.domain.budget.Budget;
 import org.solvd.company.domain.client.Client;
 import org.solvd.company.persistence.BudgetRepository;
+import org.solvd.company.persistence.impl.BudgetRepositoryImp;
 import org.solvd.company.persistence.impl.ClientsRepositoryImp;
 import org.solvd.company.service.BudgetService;
 
@@ -12,14 +13,12 @@ public class BudgetServiceImp implements BudgetService {
 
     private final BudgetRepository budgetRepository;
 
-    public BudgetServiceImp(BudgetRepository budgetRepository) {
-        this.budgetRepository = budgetRepository;
+    public BudgetServiceImp() {
+        this.budgetRepository = new BudgetRepositoryImp();
     }
 
     @Override
     public void create(Budget budget, Long companyID) {
-        ClientServiceImp clientServiceImp = new ClientServiceImp(new ClientsRepositoryImp());
-        clientServiceImp.create(new Client(), companyID);
         budgetRepository.create(budget, companyID);
     }
 

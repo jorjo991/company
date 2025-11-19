@@ -2,6 +2,7 @@ package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.company.Address;
 import org.solvd.company.persistence.AddressRepository;
+import org.solvd.company.persistence.impl.AddressRepositoryImp;
 import org.solvd.company.service.AddressService;
 
 import java.util.List;
@@ -10,8 +11,8 @@ public class AddressServiceImp implements AddressService {
 
     private final AddressRepository addressRepository;
 
-    public AddressServiceImp(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
+    public AddressServiceImp() {
+        this.addressRepository = new AddressRepositoryImp();
     }
 
     @Override
