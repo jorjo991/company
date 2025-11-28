@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.solvd.company.mybatis.LaptopMapper">
+
+
+    <resultMap id="laptopMap" type="org.solvd.company.domain.equipment.Laptop">
+        <id property="id" column="id"/>
+        <result property="brand" column="brand"/>
+        <result property="name" column="name"/>
+        <result property="color" column="color"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO laptops (name,brand,color,employee_id)
+        values(#{laptop.name},#{laptop.brand},#{laptop.color},#{employeeId})
+    </insert>
+
+    <select id="selectById" parameterType="Long" resultMap="laptopMap">
+        SELECT id,name,brand,color FROM laptops WHERE id=#{id}
+    </select>
+
+    <select id="selectAll" resultMap="laptopMap" >
+        SELECT id,name,brand,color FROM laptops;
+    </select>
+
+    <update id="update" parameterType="org.solvd.company.domain.equipment.Laptop">
+        UPDATE laptops set name=#{name}, brand=#{brand} , color=#{color} where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        Delete from laptops where id=#{id}
+    </delete>
+
+
+
+</mapper>

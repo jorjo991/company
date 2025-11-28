@@ -1,6 +1,7 @@
 package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.company.Address;
+import org.solvd.company.mybatis.impl.AddressRepositoryMyBatisImp;
 import org.solvd.company.persistence.AddressRepository;
 import org.solvd.company.persistence.impl.AddressRepositoryImp;
 import org.solvd.company.service.AddressService;
@@ -12,7 +13,7 @@ public class AddressServiceImp implements AddressService {
     private final AddressRepository addressRepository;
 
     public AddressServiceImp() {
-        this.addressRepository = new AddressRepositoryImp();
+        this.addressRepository = new AddressRepositoryMyBatisImp();
     }
 
     @Override

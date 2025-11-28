@@ -1,6 +1,7 @@
 package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.client.Client;
+import org.solvd.company.mybatis.impl.ClientRepositoryMyBatisImp;
 import org.solvd.company.persistence.ClientsRepository;
 import org.solvd.company.persistence.impl.ClientsRepositoryImp;
 import org.solvd.company.service.ClientService;
@@ -12,7 +13,7 @@ public class ClientServiceImp implements ClientService {
     private final ClientsRepository clientRepository;
 
     public ClientServiceImp() {
-        this.clientRepository = new ClientsRepositoryImp();
+        this.clientRepository = new ClientRepositoryMyBatisImp();
     }
 
     @Override

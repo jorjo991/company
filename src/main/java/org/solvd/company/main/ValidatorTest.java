@@ -20,7 +20,6 @@ public class ValidatorTest {
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(xmlFile));
             System.out.println("XML is valid.");
-
         } catch (Exception e) {
             System.out.println("XML is NOT valid: " + e.getMessage());
         }

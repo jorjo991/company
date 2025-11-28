@@ -1,6 +1,7 @@
 package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.equipment.Laptop;
+import org.solvd.company.mybatis.impl.LaptopRepositoryMyBatisImp;
 import org.solvd.company.persistence.LaptopRepository;
 import org.solvd.company.persistence.impl.LaptopRepositoryImp;
 import org.solvd.company.service.LaptopService;
@@ -12,7 +13,7 @@ public class LaptopServiceImp implements LaptopService {
     private final LaptopRepository laptopRepository;
 
     public LaptopServiceImp() {
-        this.laptopRepository = new LaptopRepositoryImp();
+        this.laptopRepository = new LaptopRepositoryMyBatisImp();
     }
 
     @Override

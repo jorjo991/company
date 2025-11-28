@@ -2,6 +2,7 @@ package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.budget.Budget;
 import org.solvd.company.domain.client.Client;
+import org.solvd.company.mybatis.impl.BudgetRepositoryMyBatisImp;
 import org.solvd.company.persistence.BudgetRepository;
 import org.solvd.company.persistence.impl.BudgetRepositoryImp;
 import org.solvd.company.persistence.impl.ClientsRepositoryImp;
@@ -14,7 +15,7 @@ public class BudgetServiceImp implements BudgetService {
     private final BudgetRepository budgetRepository;
 
     public BudgetServiceImp() {
-        this.budgetRepository = new BudgetRepositoryImp();
+        this.budgetRepository = new BudgetRepositoryMyBatisImp();
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.client.Client;
 import org.solvd.company.domain.company.Company;
+import org.solvd.company.mybatis.impl.CompanyRepositoryMyBatisImp;
 import org.solvd.company.persistence.CompanyRepository;
 import org.solvd.company.persistence.impl.ClientsRepositoryImp;
 import org.solvd.company.persistence.impl.CompanyRepositoryImp;
@@ -16,7 +17,7 @@ public class CompanyServiceImp implements CompanyService {
     private final ClientService clientService;
 
     public CompanyServiceImp() {
-        this.companyRepository = new CompanyRepositoryImp();
+        this.companyRepository = new CompanyRepositoryMyBatisImp();
         this.clientService = new ClientServiceImp();
     }
 

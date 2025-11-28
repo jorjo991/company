@@ -24,7 +24,7 @@ public class Budget {
     @Override
     public String toString() {
         return "Budget{" +
-                "BudgetID=" + id +
+                "id=" + id +
                 ", totalAmount=" + totalAmount +
                 ", spent=" + spent +
                 ", Belongs='" + description + '\'' +

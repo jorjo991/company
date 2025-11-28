@@ -1,39 +1,40 @@
 package org.solvd.company.main;
 
+import org.solvd.company.domain.budget.Budget;
 import org.solvd.company.domain.company.Company;
-import org.solvd.company.persistence.impl.ClientsRepositoryImp;
-import org.solvd.company.persistence.impl.CompanyRepositoryImp;
-import org.solvd.company.persistence.impl.LaptopRepositoryImp;
-import org.solvd.company.persistence.impl.TaskRepositoryImp;
+import org.solvd.company.mybatis.impl.*;
+import org.solvd.company.persistence.*;
 import org.xml.sax.SAXException;
 
-import java.sql.*;
+import java.util.Optional;
 
 public class Main {
 
     public static void main(String[] args) throws SAXException {
-        try {
+        LaptopRepository laptopRepository = new LaptopRepositoryMyBatisImp();
+        System.out.println(laptopRepository.get(2L));
+        System.out.println(laptopRepository.readAll());
+        System.out.println("-------------------");
 
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/company", "postgres", "evashechema123");
+        BudgetRepository budgetRepository = new BudgetRepositoryMyBatisImp();
+        Optional<Budget> budget = budgetRepository.get(1L);
+        System.out.println(budget);
+        System.out.println(budgetRepository.readAll());
+        System.out.println("-------------------");
 
-            CompanyRepositoryImp companyRepositoryImp = new CompanyRepositoryImp();
-            System.out.println(companyRepositoryImp.readAll());
+        AddressRepository addressRepository = new AddressRepositoryMyBatisImp();
+        System.out.println(addressRepository.get(1L));
+        System.out.println(addressRepository.readAll());
+        System.out.println("-------------------");
 
-            /*
-            TaskRepositoryImp taskRepositoryImp = new TaskRepositoryImp();
-            System.out.println(taskRepositoryImp.get(1L));
-            System.out.println(taskRepositoryImp.readAll());
-            LaptopRepositoryImp laptopRepositoryImp = new LaptopRepositoryImp();
-            System.out.println(laptopRepositoryImp.get(1L));
-            System.out.println(laptopRepositoryImp.readAll());
+        ClientsRepository clientsRepository = new ClientRepositoryMyBatisImp();
+        System.out.println(clientsRepository.get(2L));
+        System.out.println(clientsRepository.readAll());
+        System.out.println("-------------------");
 
-            ClientsRepositoryImp clientsRepositoryImp = new ClientsRepositoryImp();
-            System.out.println(clientsRepositoryImp.get(2L));
-            System.out.println(clientsRepositoryImp.readAll());
+        CompanyRepository companyRepository = new CompanyRepositoryMyBatisImp();
+        System.out.println(companyRepository.get(1L));
+        System.out.println(companyRepository.readAll());
 
-             */
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }

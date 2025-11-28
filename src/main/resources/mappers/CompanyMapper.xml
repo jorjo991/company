@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.solvd.company.mybatis.CompanyMapper">
+
+    <resultMap id="budgetMap" type="org.solvd.company.domain.budget.Budget">
+        <id property="id" column="budget_id"/>
+        <result property="totalAmount" column="budget_total_amount"/>
+        <result property="spent" column="budget_spend_amount"/>
+        <result property="description" column="budget_description"/>
+    </resultMap> 
+    
+    <resultMap id="clientMap" type="org.solvd.company.domain.client.Client">
+        <id property="id" column="client_id"/>
+        <result property="name" column="client_name"/>
+        <result property="surname" column="client_surname"/>
+        <result property="email" column="client_email"/>
+        <result property="birthday" column="client_birthday"/>
+        <result property="active" column="client_active"/>
+        <result property="age"  column="client_age"/>
+    </resultMap> 
+    
+    <resultMap id="employeeMap" type="org.solvd.company.domain.employees.Employee">
+        <id property="id" column="employee_id"/>
+        <result property="age" column="employee_age"/>
+        <result property="name" column="employee_name"/>
+        <result property="surname" column="employee_surname"/>
+        <result property="email" column="employee_email"/>
+        <result property="birthday" column="employee_birthday"/>
+        <result property="employeeType" column="employee_type"/>
+    </resultMap>
+
+    <resultMap id="projectMap" type="org.solvd.company.domain.project.Project">
+        <id property="id" column="project_id"/>
+        <result property="name" column="project_name"/>
+       <result property="finished" column="project_finished"/>
+    </resultMap>
+
+    <resultMap id="departmentMap" type="org.solvd.company.domain.department.Department">
+        <id property="id" column="department_id"/>
+        <result property="name" column="department_name"/>
+        <result property="departmentNumber" column="department_number"/>
+        <collection property="employees" ofType="org.solvd.company.domain.employee.Employee" resultMap="employeeMap"/>
+        <collection property="projects" ofType="org.solvd.company.domain.project.Project" resultMap="projectMap"/>
+    </resultMap>
+
+    <resultMap id="companyMap" type="org.solvd.company.domain.company.Company">
+        <id property="id" column="company_id"/>
+        <result property="name" column="company_name"/>
+        <association property="budget" resultMap="budgetMap"/>
+        <collection property="clients" ofType="org.solvd.company.domain.client.Client" resultMap="clientMap"/>
+        <collection property="departments" ofType="org.solvd.company.domain.department.Department" resultMap="departmentMap"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="org.solvd.company.domain.company.Company" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO companies (name)
+        VALUES (#{name})
+    </insert>
+    <delete id="delete" parameterType="Long">
+        DELETE FROM companies WHERE id=#{id}
+    </delete>
+
+    <update id="update" parameterType="org.solvd.company.domain.company.Company">
+        UPDATE companies SET name=#{name} WHERE id=#{id}
+    </update>
+
+    <select id="selectById" parameterType="Long" resultMap="companyMap">
+    select
+    c.id as company_id, c.name as company_name,
+
+    cl.id as client_id, cl.name as client_name ,
+    cl.surname as client_surname,cl.email as client_email, cl.birthday
+    as client_birthday, cl.active as client_active, cl.age as client_age,
+
+    b.id as budget_id, b.total_amount as budget_total_amount, b.spend_amount as budet_spend_amount,
+    b.description as budget_description,
+
+    d.id as department_id , d.name as department_name , d.number as department_number,
+
+    e.id as employee_id, e.name as employee_name , e.surname as employee_surname, e.age as employee_age,
+    e.email as employee_email,e.birth_day as employee_birthday,e.employee_type,
+
+    p.id as project_id , p.name as project_name, p.finished as project_finished
+
+    from companies c
+    left join clients cl on c.id=cl.company_id
+    left join budgets b on c.id=b.company_id
+    left join departments d on c.id=d.company_id
+    left join employees e  on d.id=e.department_id
+    left join projects p  on d.id=p.department_id where c.id=#{id};
+
+    </select>
+
+    <select id="selectAll" resultMap="companyMap">
+    select
+    c.id as company_id, c.name as company_name,
+
+    cl.id as client_id, cl.name as client_name ,
+    cl.surname as client_surname,cl.email as client_email, cl.birthday
+    as client_birthday, cl.active as client_active, cl.age as client_age,
+
+    b.id as budget_id, b.total_amount as budget_total_amount, b.spend_amount as budet_spend_amount,
+    b.description as budget_description,
+
+    d.id as department_id , d.name as department_name , d.number as department_number,
+
+    e.id as employee_id, e.name as employee_name , e.surname as employee_surname, e.age as employee_age,
+    e.email as employee_email,e.birth_day as employee_birthday,e.employee_type,
+
+    p.id as project_id , p.name as project_name, p.finished as project_finished
+
+
+    from companies c
+    left join clients cl on c.id=cl.company_id
+    left join budgets b on c.id=b.company_id
+    left join departments d on c.id=d.company_id
+    left join employees e  on d.id=e.department_id
+    left join projects p  on d.id=p.department_id
+    </select>
+
+
+</mapper>
+
+
