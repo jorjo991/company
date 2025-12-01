@@ -2,13 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.solvd.company.mybatis.AddressMapper">
 
-    <resultMap id="resultMap" type="org.solvd.company.domain.company.Address">
+<mapper namespace="org.solvd.company.persistence.AddressRepository">
+
+    <resultMap id="resultMap" type="org.solvd.company.domain.company.Address" autoMapping="false">
+
         <id property="id" column="id"/>
+
         <result property="city" column="city"/>
+
         <result property="street" column="street"/>
+
         <result property="number" column="number"/>
+
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -20,16 +26,17 @@
     <delete id="delete" parameterType="Long">
         DELETE FROM addresses WHERE id=#{id}
     </delete>
+
     <update id="update" parameterType="org.solvd.company.domain.company.Address">
         UPDATE addresses SET city=#{city}, street=#{street}, number=#{number}
         WHERE id=#{id}
     </update>
 
-    <select id="selectById" parameterType="Long" resultMap="resultMap">
+    <select id="get" parameterType="Long" resultMap="resultMap">
         SELECT id, city, street, number FROM addresses WHERE id=#{id}
     </select>
 
-    <select id="selectAll" resultMap="resultMap">
+    <select id="readAll" resultMap="resultMap">
         SELECT id, city, street, number FROM addresses
     </select>
 

@@ -65,11 +65,11 @@ public class BudgetRepositoryImp implements BudgetRepository {
     }
 
     @Override
-    public void delete(Budget budget) {
+    public void delete(Long id) {
         Connection connection = connectionPool.getConnection();
         String deleteString = "Delete from budgets where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(deleteString)) {
-            preparedStatement.setLong(1, budget.getId());
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());

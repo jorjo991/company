@@ -1,9 +1,8 @@
-package org.solvd.company.mybatis.impl;
+package org.solvd.company.persistence.impl;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.solvd.company.domain.budget.Budget;
-import org.solvd.company.mybatis.BudgetMapper;
 import org.solvd.company.persistence.BudgetRepository;
 
 import java.util.List;
@@ -11,20 +10,20 @@ import java.util.Optional;
 
 public class BudgetRepositoryMyBatisImp implements BudgetRepository {
 
-    private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSession();
+    private final static SqlSessionFactory sqlSessionFactory = MybatisUtil.getSession();
 
     @Override
     public void create(Budget budget, Long companyId) {
         try (SqlSession session = sqlSessionFactory.openSession(true)) {
-            BudgetMapper budgetMapper = session.getMapper(BudgetMapper.class);
-            budgetMapper.insert(budget, companyId);
+            BudgetRepository budgetMapper = session.getMapper(BudgetRepository.class);
+            budgetMapper.create(budget, companyId);
         }
     }
 
     @Override
     public void update(Budget t) {
         try (SqlSession session = sqlSessionFactory.openSession(true)) {
-            BudgetMapper budgetMapper = session.getMapper(BudgetMapper.class);
+            BudgetRepository budgetMapper = session.getMapper(BudgetRepository.class);
             budgetMapper.update(t);
         }
     }
@@ -33,26 +32,26 @@ public class BudgetRepositoryMyBatisImp implements BudgetRepository {
     public Optional<Budget> get(Long id) {
         try {
             SqlSession session = sqlSessionFactory.openSession(true);
-            BudgetMapper budgetMapper = session.getMapper(BudgetMapper.class);
-            return budgetMapper.selectById(id);
+            BudgetRepository budgetMapper = session.getMapper(BudgetRepository.class);
+            return budgetMapper.get(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void delete(Budget budget) {
+    public void delete(Long id) {
         try (SqlSession session = sqlSessionFactory.openSession(true)) {
-            BudgetMapper budgetMapper = session.getMapper(BudgetMapper.class);
-            budgetMapper.delete(budget.getId());
+            BudgetRepository budgetMapper = session.getMapper(BudgetRepository.class);
+            budgetMapper.delete(id);
         }
     }
 
     @Override
     public List<Budget> readAll() {
         try (SqlSession session = sqlSessionFactory.openSession(true)) {
-            BudgetMapper budgetMapper = session.getMapper(BudgetMapper.class);
-            return budgetMapper.selectAll();
+            BudgetRepository budgetMapper = session.getMapper(BudgetRepository.class);
+            return budgetMapper.readAll();
         }
     }
 }

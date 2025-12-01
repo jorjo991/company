@@ -4,12 +4,15 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
+import org.solvd.company.domain.budget.Budget;
 import org.solvd.company.domain.budget.Salary;
 import org.solvd.company.domain.equipment.Laptop;
 import org.solvd.company.domain.person.Person;
 import org.solvd.company.domain.project.Project;
 import org.solvd.company.domain.task.Task;
 
+import java.lang.classfile.Interfaces;
+import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -114,5 +117,89 @@ public class Employee extends Person {
 
     public void setWoksOnProjects(List<Project> woksOnProject) {
         this.woksOnProjects = woksOnProject;
+    }
+
+    public Employee(Builder builder) {
+        super(builder.age, builder.name, builder.surname, builder.email, builder.birthDay);
+        this.id = builder.id;
+        this.employeeType = builder.employeeType;
+        this.salary = builder.salary;
+        this.tasks = builder.tasks;
+        this.woksOnProjects = builder.woksOnProjects;
+        this.laptop = builder.laptop;
+
+    }
+
+    public static class Builder {
+        private Long id;
+        private String name;
+        private String surname;
+        private Integer age;
+        private String email;
+        private LocalDate birthDay;
+        private EmployeeType employeeType;
+        private Salary salary;
+        private List<Task> tasks;
+        private List<Project> woksOnProjects;
+        private Laptop laptop;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public Builder surname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder birthDay(LocalDate birthDay) {
+            this.birthDay = birthDay;
+            return this;
+        }
+
+        public Builder employeeType(EmployeeType employeeType) {
+            this.employeeType = employeeType;
+            return this;
+        }
+
+        public Builder salary(Salary salary) {
+            this.salary = salary;
+            return this;
+        }
+
+        public Builder tasks(List<Task> tasks) {
+            this.tasks = tasks;
+            return this;
+        }
+
+        public Builder woksOnProjects(List<Project> woksOnProjects) {
+            this.woksOnProjects = woksOnProjects;
+            return this;
+        }
+
+        public Builder laptop(Laptop laptop) {
+            this.laptop = laptop;
+            return this;
+        }
+
+        public Employee build() {
+            return new Employee(this);
+        }
     }
 }

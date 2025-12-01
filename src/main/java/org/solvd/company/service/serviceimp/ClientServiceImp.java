@@ -1,9 +1,8 @@
 package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.client.Client;
-import org.solvd.company.mybatis.impl.ClientRepositoryMyBatisImp;
+import org.solvd.company.persistence.impl.ClientRepositoryMyBatisImp;
 import org.solvd.company.persistence.ClientsRepository;
-import org.solvd.company.persistence.impl.ClientsRepositoryImp;
 import org.solvd.company.service.ClientService;
 
 import java.util.List;
@@ -34,7 +33,7 @@ public class ClientServiceImp implements ClientService {
 
     @Override
     public void deleteClient(Client client) {
-        clientRepository.delete(client);
+        clientRepository.delete(client.getId());
     }
 
     @Override

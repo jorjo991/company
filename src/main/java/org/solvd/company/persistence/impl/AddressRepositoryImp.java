@@ -72,13 +72,13 @@ public class AddressRepositoryImp implements AddressRepository {
     }
 
     @Override
-    public void delete(Address address) {
+    public void delete(Long id) {
         Connection connection = pool.getConnection();
 
         String delete = "DELETE FROM addresses WHERE id=?";
 
         try (PreparedStatement ps = connection.prepareStatement(delete)) {
-            ps.setLong(1, address.getId());
+            ps.setLong(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to delete address: " + e.getMessage(), e);

@@ -69,11 +69,11 @@ public class LaptopRepositoryImp implements LaptopRepository {
     }
 
     @Override
-    public void delete(Laptop laptop) {
+    public void delete(Long id) {
         String sql = "DELETE FROM laptops WHERE id=?";
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, laptop.getId());
+            ps.setLong(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to delete laptop: " + e.getMessage(), e);

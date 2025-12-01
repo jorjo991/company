@@ -231,11 +231,11 @@ public class CompanyRepositoryImp implements CompanyRepository {
     }
 
     @Override
-    public void delete(Company company) {
+    public void delete(Long id) {
         Connection connection = connectionPool.getConnection();
         String deleteString = "Delete from companies where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(deleteString)) {
-            preparedStatement.setLong(1, company.getId());
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());

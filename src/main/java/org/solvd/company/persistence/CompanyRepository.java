@@ -13,7 +13,7 @@ public interface CompanyRepository {
 
     Optional<Company> get(Long id);
 
-    void delete(Company t);
+    void delete(Long id);
 
     List<Company> readAll();
 

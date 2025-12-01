@@ -1,9 +1,8 @@
-package org.solvd.company.mybatis.impl;
+package org.solvd.company.persistence.impl;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.solvd.company.domain.company.Company;
-import org.solvd.company.mybatis.CompanyMapper;
 import org.solvd.company.persistence.CompanyRepository;
 
 import java.util.List;
@@ -11,20 +10,20 @@ import java.util.Optional;
 
 public class CompanyRepositoryMyBatisImp implements CompanyRepository {
 
-    private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSession();
+    private final static SqlSessionFactory sqlSessionFactory = MybatisUtil.getSession();
 
     @Override
     public void create(Company company) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
-            companyMapper.insert(company);
+            CompanyRepository companyMapper = session.getMapper(CompanyRepository.class);
+            companyMapper.create(company);
         }
     }
 
     @Override
     public void update(Company company) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
+            CompanyRepository companyMapper = session.getMapper(CompanyRepository.class);
             companyMapper.update(company);
         }
     }
@@ -33,25 +32,25 @@ public class CompanyRepositoryMyBatisImp implements CompanyRepository {
     public Optional<Company> get(Long id) {
 
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
-            return companyMapper.selectById(id);
+            CompanyRepository companyMapper = session.getMapper(CompanyRepository.class);
+            return companyMapper.get(id);
         }
     }
 
     @Override
-    public void delete(Company t) {
+    public void delete(Long id) {
 
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
-            companyMapper.delete(t.getId());
+            CompanyRepository companyMapper = session.getMapper(CompanyRepository.class);
+            companyMapper.delete(id);
         }
     }
 
     @Override
     public List<Company> readAll() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
-            return companyMapper.selectAll();
+            CompanyRepository companyMapper = session.getMapper(CompanyRepository.class);
+            return companyMapper.readAll();
         }
     }
 }

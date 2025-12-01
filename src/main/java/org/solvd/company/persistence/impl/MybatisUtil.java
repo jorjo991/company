@@ -1,4 +1,4 @@
-package org.solvd.company.mybatis.impl;
+package org.solvd.company.persistence.impl;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;

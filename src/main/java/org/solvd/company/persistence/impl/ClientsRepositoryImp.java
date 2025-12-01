@@ -82,12 +82,12 @@ public class ClientsRepositoryImp implements ClientsRepository {
     }
 
     @Override
-    public void delete(Client client) {
+    public void delete(Long id) {
         Connection connection = connectionPool.getConnection();
         String delete = "DELETE FROM clients WHERE id=?";
 
         try (PreparedStatement ps = connection.prepareStatement(delete)) {
-            ps.setLong(1, client.getId());
+            ps.setLong(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to delete client: " + e.getMessage(), e);

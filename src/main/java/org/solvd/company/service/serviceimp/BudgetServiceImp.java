@@ -1,11 +1,8 @@
 package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.budget.Budget;
-import org.solvd.company.domain.client.Client;
-import org.solvd.company.mybatis.impl.BudgetRepositoryMyBatisImp;
+import org.solvd.company.persistence.impl.BudgetRepositoryMyBatisImp;
 import org.solvd.company.persistence.BudgetRepository;
-import org.solvd.company.persistence.impl.BudgetRepositoryImp;
-import org.solvd.company.persistence.impl.ClientsRepositoryImp;
 import org.solvd.company.service.BudgetService;
 
 import java.util.List;
@@ -36,7 +33,7 @@ public class BudgetServiceImp implements BudgetService {
 
     @Override
     public void deleteBudget(Budget budget) {
-        budgetRepository.delete(budget);
+        budgetRepository.delete(budget.getId());
     }
 
     @Override

@@ -2,10 +2,8 @@ package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.client.Client;
 import org.solvd.company.domain.company.Company;
-import org.solvd.company.mybatis.impl.CompanyRepositoryMyBatisImp;
+import org.solvd.company.persistence.impl.CompanyRepositoryMyBatisImp;
 import org.solvd.company.persistence.CompanyRepository;
-import org.solvd.company.persistence.impl.ClientsRepositoryImp;
-import org.solvd.company.persistence.impl.CompanyRepositoryImp;
 import org.solvd.company.service.ClientService;
 import org.solvd.company.service.CompanyService;
 
@@ -41,7 +39,7 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public void deleteCompany(Company company) {
-        companyRepository.delete(company);
+        companyRepository.delete(company.getId());
     }
 
     @Override

@@ -3,13 +3,14 @@ package org.solvd.company.domain.client;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
+import org.solvd.company.designPatterns.observer.ClientObserver;
 import org.solvd.company.domain.person.Person;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Client extends Person {
+public class Client extends Person implements ClientObserver {
 
     private Long id;
     @XmlElement(name = "active")
@@ -59,5 +60,12 @@ public class Client extends Person {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public void update(String message) {
+
+        System.out.println("Client " + this.getName() + " received update: " + message);
+
     }
 }

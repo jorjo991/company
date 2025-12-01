@@ -3,32 +3,45 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.solvd.company.mybatis.ClientMapper">
+<mapper namespace="org.solvd.company.persistence.ClientsRepository">
 
-    <resultMap id="clientMap" type="org.solvd.company.domain.client.Client">
+    <resultMap id="clientMap" type="org.solvd.company.domain.client.Client" autoMapping="false">
+
         <id property="id" column="id"/>
+
         <result property="name" column="name"/>
+
         <result property="surname" column="surname"/>
+
         <result property="email" column="email"/>
+
         <result property="birthday" column="birthday"/>
+
         <result property="active" column="active"/>
+
     </resultMap>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO clients (name, surname, email, birthday, active,company_id)
         values(#{client.name},#{client.surname},#{client.email},
         #{client.birthday}, #{client.active} , #{companyId})
     </insert>
-    <select id="selectById" parameterType="Long" resultMap="clientMap">
+
+    <select id="get" parameterType="Long" resultMap="clientMap">
         SELECT id,name,surname,email,birthday,active FROM clients WHERE id=#{id}
     </select>
-    <select id="selectAll" resultMap="clientMap" >
+
+    <select id="readAll" resultMap="clientMap">
         SELECT id,name,surname,email,birthday,active FROM clients;
     </select>
+
     <update id="update" parameterType="org.solvd.company.domain.client.Client">
         UPDATE clients set name=#{name}, surname=#{surname} , email=#{email},
         birthday=#{birthday}, active=#{active} where id=#{id}
     </update>
+
     <delete id="delete" parameterType="Long">
         Delete from clients where id=#{id}
     </delete>
+
 </mapper>

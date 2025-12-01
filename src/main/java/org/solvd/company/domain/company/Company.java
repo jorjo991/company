@@ -5,6 +5,8 @@ import jakarta.xml.bind.annotation.*;
 import org.solvd.company.domain.budget.Budget;
 import org.solvd.company.domain.client.Client;
 import org.solvd.company.domain.department.Department;
+import org.solvd.company.designPatterns.observer.ClientObserver;
+import org.solvd.company.designPatterns.observer.SubjectCompany;
 import org.solvd.company.domain.office.Office;
 
 import java.util.ArrayList;
@@ -14,7 +16,10 @@ import java.util.Objects;
 @JsonRootName(value = "Company")
 @XmlRootElement(name = "Company")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Company {
+public class Company implements SubjectCompany {
+
+    private List<ClientObserver> clientsObservers = new ArrayList<>();
+    private String information;
 
     private Long id;
     @XmlElement(name = "name")
@@ -117,4 +122,30 @@ public class Company {
         this.offices = offices;
     }
 
+    @Override
+    public void registerObserver(ClientObserver o) {
+        this.clientsObservers.add(o);
+    }
+
+    @Override
+    public void removeObserver(ClientObserver o) {
+        this.clientsObservers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (ClientObserver clientObserver : clientsObservers) {
+            clientObserver.update(information);
+        }
+
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
+        notifyObservers();
+    }
 }

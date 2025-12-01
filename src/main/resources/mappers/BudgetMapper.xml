@@ -2,16 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.solvd.company.mybatis.BudgetMapper">
 
-    <resultMap id="resultMap" type="org.solvd.company.domain.budget.Budget" >
+<mapper namespace="org.solvd.company.persistence.BudgetRepository">
+
+    <resultMap id="resultMap" type="org.solvd.company.domain.budget.Budget" autoMapping="false">
+
         <id property="id" column="id"/>
+
         <result property="totalAmount" column="total_amount"/>
+
         <result property="spent" column="spend_amount"/>
+
         <result property="description" column="description"/>
+
     </resultMap>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
         Inset into budgets (total_amount,spend_amount, description,company_id)
         Values(#{budget.totalAmount},#{budget.spent},#{budget.description},#{companyId})
     </insert>
@@ -20,17 +26,17 @@
         Delete from budgets where id=#{id}
     </delete>
 
-    <update id="update" >
+    <update id="update">
         Update budgets set total_amount=#{budget.totalAmount},
         spend_amount=#{budget.spent} , description=#{budget.description} where id=#{budget.id}
     </update>
 
-    <select id="selectById" parameterType="Long" resultMap="resultMap">
+    <select id="get" parameterType="Long" resultMap="resultMap">
         select id,total_amount,spend_amount,description from budgets where id=#{id}
     </select>
 
-    <select id="selectAll" resultMap="resultMap">
-    select id,total_amount,spend_amount,description from budgets;
+    <select id="readAll" resultMap="resultMap">
+        select id,total_amount,spend_amount,description from budgets;
     </select>
 
 </mapper>

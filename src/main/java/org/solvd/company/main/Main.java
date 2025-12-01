@@ -1,9 +1,12 @@
 package org.solvd.company.main;
 
 import org.solvd.company.domain.budget.Budget;
+import org.solvd.company.domain.client.Client;
 import org.solvd.company.domain.company.Company;
-import org.solvd.company.mybatis.impl.*;
+import org.solvd.company.domain.employees.Employee;
+import org.solvd.company.designPatterns.facade.CompanyFacade;
 import org.solvd.company.persistence.*;
+import org.solvd.company.persistence.impl.*;
 import org.xml.sax.SAXException;
 
 import java.util.Optional;
@@ -35,6 +38,32 @@ public class Main {
         CompanyRepository companyRepository = new CompanyRepositoryMyBatisImp();
         System.out.println(companyRepository.get(1L));
         System.out.println(companyRepository.readAll());
+
+        Employee employee = new Employee.Builder().id(15L).name("John Doe").surname("Smith").age(30).email("email").build();
+        System.out.println(employee);
+
+        Company company = new Company();
+        company.setId(1L);
+        company.setName("Tech Solutions");
+
+        Client client1 = new Client();
+        client1.setId(1L);
+        client1.setName("Acme");
+        client1.setSurname("Corp");
+
+        Client client2 = new Client();
+        client2.setName("Global");
+        client2.setSurname("Enterprises");
+
+        company.registerObserver(client1);
+        company.registerObserver(client2);
+
+        company.setInformation("New product launch next month!");
+
+        // facade pattern usage
+
+        CompanyFacade companyFacade = new CompanyFacade();
+        companyFacade.createFullCompany();
 
     }
 }

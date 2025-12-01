@@ -1,9 +1,8 @@
 package org.solvd.company.service.serviceimp;
 
 import org.solvd.company.domain.equipment.Laptop;
-import org.solvd.company.mybatis.impl.LaptopRepositoryMyBatisImp;
+import org.solvd.company.persistence.impl.LaptopRepositoryMyBatisImp;
 import org.solvd.company.persistence.LaptopRepository;
-import org.solvd.company.persistence.impl.LaptopRepositoryImp;
 import org.solvd.company.service.LaptopService;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class LaptopServiceImp implements LaptopService {
 
     @Override
     public void deleteLaptop(Laptop laptop) {
-        laptopRepository.delete(laptop);
+        laptopRepository.delete(laptop.getId());
     }
 
     @Override
